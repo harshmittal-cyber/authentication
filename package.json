@@ -1,0 +1,14 @@
+{
+  "name": "authentication-system",
+  "version": "1.0.0",
+  "description": "Authentication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Harsh Mittal",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
