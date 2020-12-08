@@ -1,3 +1,10 @@
-
 <h1>Profile</h1>
 
+<% if(locals.user){%>
+    <p><%=user.name%></p>
+    <p><%=user.email%></p>
+    <p> <a href="/users/destroysession">SignOut</a> </p>
+<% }else{%>
+    <p><a href="/users/signin">SignIn</a></p>
+    <p><a href="/users/signup">SignUp</a></p>
+<% } %>

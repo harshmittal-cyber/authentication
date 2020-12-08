@@ -1,18 +1,25 @@
-const User=require('../models/userschema');
+const User=require('../models/user');
 
-module.exports.user=function(req,res){
-    return res.render('user_profile',{
-        title:'Profile'
-    })
+module.exports.profile=function(req,res){
+        
+        return res.render('user_profile',{    
+            title:'Profile'     
+        })
 }
 
 module.exports.signin=function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('user_sign_in',{
         title:'SignIn'
     })
 }
 
 module.exports.signup=function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('user_sign_up',{
         title:'SignUp'
     })
@@ -26,7 +33,7 @@ module.exports.create=function(req,res){
     }
     
     User.findOne({email:req.body.email},function(err,user){
-        if(err){console.log('Error in finding a user',err)}
+        if(err){console.log('Error in finding a user'); return;}
 
         if(!user){
             User.create(req.body,function(err,user){
@@ -42,5 +49,10 @@ module.exports.create=function(req,res){
 }
 
 module.exports.createSession=function(req,res){
-    
+    return res.redirect('/');
+}
+
+module.exports.destroysession=function(req,res){
+    req.logout();
+    return res.redirect('/')
 }
