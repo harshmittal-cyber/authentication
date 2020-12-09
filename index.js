@@ -1,10 +1,13 @@
 const express=require('express');
 const app=express();
 const port=1000;
+const bcrypt=require('bcrypt');
 const path=require('path');
 const cookieParser=require('cookie-parser');
 const expressLayouts = require('express-ejs-layouts');
 const db=require('./config/mongoose');
+const connect=require('connect');
+const sassMiddleware=require('node-sass-middleware');
 //used for passportjs
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
@@ -16,6 +19,13 @@ app.use(express.urlencoded());
 //for cookies
 app.use(cookieParser());
 
+app.use(sassMiddleware({
+    src:'./assets/scss',
+    dest:'./assets/css',
+    debug:true,
+    outputStyle:'extended',
+    prefix:'/css'
+}))
 //for layouts 
 app.use(express.static('./assets'))
 app.use(expressLayouts);
@@ -24,11 +34,12 @@ app.use(expressLayouts);
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
 
-//router
+
 
 //view engine setup
 app.set('view engine','ejs');
 app.set('views','./views');
+
 
 app.use(session({
     name:'authentication',
