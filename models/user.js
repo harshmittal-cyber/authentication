@@ -36,20 +36,12 @@ userSchema.pre('save',function(next){
         bcrypt.hash(user.password,salt,function(err,hash){
             if(err){return next(err)}
             user.password=hash;
-
+            user.save();
             next();
         })
     })
 
 })
-
-userSchema.methods.comparePassword=function(userpassword,next){
-    bcrypt.compare(userpassword,this.password,function(err,result){
-        if(err){return next(err); }
-
-        next(null,result)
-    })
-}
 
 const User=mongoose.model('User',userSchema);
 

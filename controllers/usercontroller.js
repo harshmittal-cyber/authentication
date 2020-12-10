@@ -1,5 +1,5 @@
 const User=require('../models/user');
-
+const bcrypt=require('bcrypt');
 module.exports.profile=function(req,res){
         
         return res.render('user_profile',{    
@@ -8,6 +8,8 @@ module.exports.profile=function(req,res){
 }
 
 module.exports.signin=function(req,res){
+    
+    
     if(req.isAuthenticated()){
         return res.redirect('/users/profile');
     }

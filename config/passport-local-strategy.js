@@ -1,9 +1,11 @@
 const passport=require('passport');
 const LocalStrategy=require('passport-local').Strategy;
 const User = require('../models/user');
+const bcrypt=require('bcrypt');
 
 passport.use(new LocalStrategy({
         usernameField:'email',
+        passwordField:'password'
         // passReqToCallback:true
     },function(email,password,done){
         User.findOne({email:email},function(err,user){
@@ -12,11 +14,18 @@ passport.use(new LocalStrategy({
             if(!user){
                 return done(null,false)
             }
-            if(user.password != password){
-                return done(null,false)
-            }
+           bcrypt.compare(password,user.password,function(err,result){
+               if(!result){
+                   return done(null,false);
+               }
 
-            return done(null,user)
+               if(user.email===false){
+                   //if email is not verified
+                    return done(null,false)
+               }else{
+                   return done(null,user)
+               }
+           })
         })
     }
    
