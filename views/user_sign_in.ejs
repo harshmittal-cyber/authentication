@@ -5,7 +5,15 @@
     </a>
 </p>
 <form action="/users/create-session" method="POST">
+    <label for="email">Email</label>
     <input type="email" name="email" placeholder="Your email" required>
+
+    <label for="password">Password</label>
     <input type="password" name="password" placeholder="Your password" required>
-    <input type="submit" value="SignIn">
+    
+    <button type="submit">SignIn</button>
 </form>
+
+<p>
+    <a href="/users/auth/google">SignIn With Google</a>
+</p>

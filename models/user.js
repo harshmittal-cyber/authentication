@@ -3,6 +3,8 @@ const bcrypt=require('bcrypt');
 const { use } = require('passport');
 const saltRounds=10;
 
+
+
 const userSchema=new mongoose.Schema({
     email:{
         type:String,
@@ -19,6 +21,12 @@ const userSchema=new mongoose.Schema({
     }
 },{
     timestamps:true
+})
+
+//Adding a virtual property of islocked to help us
+userSchema.virtual('isLocked').get(function(){
+    //check for future lockuntil timestamp
+    return !!(this.lockUntil && this.lockUntil > Date.now());
 })
 
 //to encrypt the password
@@ -42,6 +50,7 @@ userSchema.pre('save',function(next){
     })
 
 })
+
 
 const User=mongoose.model('User',userSchema);
 

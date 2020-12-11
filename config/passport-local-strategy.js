@@ -14,21 +14,24 @@ passport.use(new LocalStrategy({
             if(!user){
                 return done(null,false)
             }
-           bcrypt.compare(password,user.password,function(err,result){
-               if(!result){
-                   return done(null,false);
-               }
+            
 
-               if(user.email===false){
+            bcrypt.compare(password,user.password,function(err,result){
+                if(!result){
+                   return done(null,false);
+                }
+
+                if(user.email===false){
                    //if email is not verified
                     return done(null,false)
-               }else{
-                   return done(null,user)
-               }
-           })
+                }
+                //if result comes then return the user
+                if(result){
+                    return done(null,user)
+                }
+            })
         })
-    }
-   
+    }    
 ))
 
 //serialize a user means user.id is stored as cookie in browser

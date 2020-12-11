@@ -15,6 +15,16 @@ router.post('/create-session',
     }
 ),user_controller.createSession);
 
+
+router.get('/auth/google',
+    passport.authenticate('google',{successRedirect:'/',scope:['profile','email']}));
+
+router.get('/auth/google/callback',
+        passport.authenticate('google',{
+            failureRedirect:'/users/signin',
+        }
+    ),user_controller.createSession);
+
 router.get('/destroysession',user_controller.destroysession);
 
 module.exports=router;
