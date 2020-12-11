@@ -31,6 +31,7 @@ module.exports.create=function(req,res){
     //TODO LATER
     //if password not matches with confirm password
     if (req.body.password!=req.body.confirm_password){
+        req.flash('error','Password Not matched')
         return res.redirect('back');    
     }
     
@@ -40,7 +41,7 @@ module.exports.create=function(req,res){
         if(!user){
             User.create(req.body,function(err,user){
                 if(err){console.log('Error in creating a user',err)}
-
+                req.flash('success','User Created')
                 return res.redirect('/users/signin');
             })
         }else{
@@ -51,10 +52,12 @@ module.exports.create=function(req,res){
 }
 
 module.exports.createSession=function(req,res){
+    req.flash('success','Logged In Successfully')
     return res.redirect('/');
 }
 
 module.exports.destroysession=function(req,res){
     req.logout();
+    req.flash('success','Logged Out Successfully')
     return res.redirect('/')
 }

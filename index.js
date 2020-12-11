@@ -14,6 +14,8 @@ const passportLocal=require('./config/passport-local-strategy');
 const passportGoogle=require('./config/passport-google-oauth-strategy');
 const session=require('express-session');
 const MongoStore=require('connect-mongo')(session);
+const flash=require('connect-flash');
+const customMware=require('./config/middleware');
 
 app.use(express.urlencoded());
 
@@ -60,11 +62,14 @@ app.use(session({
     )
 }))
 
+//storing passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(passport.setAuthenticatedUser);
 
+//for connect-flash msgs
+app.use(flash());
+app.use(customMware.setFlash);
 
 app.use('/',require('./routes/index'));
 

@@ -5,28 +5,35 @@ const bcrypt=require('bcrypt');
 
 passport.use(new LocalStrategy({
         usernameField:'email',
-        passwordField:'password'
-        // passReqToCallback:true
-    },function(email,password,done){
+        passwordField:'password',
+        passReqToCallback:true
+    },function(req,email,password,done){
         User.findOne({email:email},function(err,user){
-            if(err){return done(err)}
+            if(err){
+                req.flash('error',err)
+                return done(err)
+            }
     
             if(!user){
+                req.flash('error','Invalid Username or Password')
                 return done(null,false)
             }
             
 
             bcrypt.compare(password,user.password,function(err,result){
                 if(!result){
-                   return done(null,false);
+                    req.flash('error','Invalid Username or Password')
+                    return done(null,false);
                 }
 
                 if(user.email===false){
                    //if email is not verified
+                   req.flash('error','Invalid Userrname or Password')
                     return done(null,false)
                 }
                 //if result comes then return the user
                 if(result){
+                    // req.flash('success','Logged In Successfully')
                     return done(null,user)
                 }
             })
