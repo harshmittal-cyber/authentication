@@ -1,5 +1,6 @@
 <html>
     <head>
+
         <title>
             <%=title%>
         </title>
@@ -9,10 +10,14 @@
         <%-style-%>
     </head>
     <body>
-        <%- body -%>
+        <main id="layout-main">
+            <%- body -%>
+        </main>
+        
 
         <%-script -%>
         <script>
+            //for notification messages
             <% if(flash.success && flash.success.length>0){%>
                 new Noty({
                     layout:'topRight',
@@ -21,7 +26,7 @@
                     timeout:1500,
                     type:'success',
                     closeWith:['click','button'],
-                    
+                  
                     }).show();
             <% } %>
 

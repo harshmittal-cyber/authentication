@@ -12,6 +12,7 @@ const sassMiddleware=require('node-sass-middleware');
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 const passportGoogle=require('./config/passport-google-oauth-strategy');
+const passportOneSessionPerUser=require('passport-one-session-per-user');
 const session=require('express-session');
 const MongoStore=require('connect-mongo')(session);
 const flash=require('connect-flash');
@@ -65,6 +66,7 @@ app.use(session({
 //storing passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.authenticate('passport-one-session-per-user'));
 app.use(passport.setAuthenticatedUser);
 
 //for connect-flash msgs

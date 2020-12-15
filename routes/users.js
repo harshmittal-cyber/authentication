@@ -5,6 +5,8 @@ const router=express.Router();
 const user_controller=require('../controllers/usercontroller')
 
 router.get('/profile',passport.checkAuthentication,user_controller.profile);
+router.post('/update/:id',user_controller.update);
+
 router.get('/signin',user_controller.signin);
 router.get('/signup',user_controller.signup);
 
@@ -17,7 +19,7 @@ router.post('/create-session',
 
 
 router.get('/auth/google',
-    passport.authenticate('google',{successRedirect:'/',scope:['profile','email']}));
+    passport.authenticate('google',{scope:['profile','email']}));
 
 router.get('/auth/google/callback',
         passport.authenticate('google',{

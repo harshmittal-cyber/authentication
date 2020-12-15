@@ -1,24 +1,30 @@
-<h1>Sign Up</h1>
+<link rel="stylesheet" href="/css/authentication.css">
+
 <p>
     <a href="/users/signin">
         SignIn
     </a>
 </p>
-<form action="/users/create" method="POST">
-    <label for="email">Email</label>
-    <input type="email" name="email" placeholder="Your email" required>
 
-    <label for="name">UserName</label>
-    <input type="text" name="name" placeholder="Username" required>
-
-    <label for="password">Password</label>
-    <input type="password" name="password" placeholder="Your password" required>
-
-    <label for="confirm_password">Confirm Password</label>
-    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+    <h1>Sign Up</h1>
+    <form action="/users/create" method="POST">
     
-    <button type="submit">SignUp</button>
-</form>
+        
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Your email" required>
+
+        <label for="name">UserName</label>
+        <input type="text" name="name" placeholder="Username" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Your password" required>
+
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        
+        <button type="submit">SignUp</button>
+    </form>
+
 
 <p>
     <a href="/users/auth/google">SignUp with Google</a>

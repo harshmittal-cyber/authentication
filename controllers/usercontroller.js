@@ -1,5 +1,6 @@
 const User=require('../models/user');
 const bcrypt=require('bcrypt');
+
 module.exports.profile=function(req,res){
         
         return res.render('user_profile',{    
@@ -7,8 +8,8 @@ module.exports.profile=function(req,res){
         })
 }
 
+//signin handler
 module.exports.signin=function(req,res){
-    
     
     if(req.isAuthenticated()){
         return res.redirect('/users/profile');
@@ -18,6 +19,12 @@ module.exports.signin=function(req,res){
     })
 }
 
+module.exports.createSession=function(req,res){
+    req.flash('success','Logged In Successfully')
+    return res.redirect('/');
+}
+
+//signup handler
 module.exports.signup=function(req,res){
     if(req.isAuthenticated()){
         return res.redirect('/users/profile');
@@ -45,17 +52,26 @@ module.exports.create=function(req,res){
                 return res.redirect('/users/signin');
             })
         }else{
+            req.flash('error',`User already exist`)
             return res.redirect('back');
         }
     })
 
 }
 
-module.exports.createSession=function(req,res){
-    req.flash('success','Logged In Successfully')
-    return res.redirect('/');
+//profile update handler
+module.exports.update=function(req,res){
+    if(req.user.id==req.params.id){
+        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+            return res.redirect('back')
+        })
+    }else{
+        return res.status(401).send('Unauthorized');
+    }
 }
 
+
+//logout handler 
 module.exports.destroysession=function(req,res){
     req.logout();
     req.flash('success','Logged Out Successfully')

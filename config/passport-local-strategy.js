@@ -2,7 +2,7 @@ const passport=require('passport');
 const LocalStrategy=require('passport-local').Strategy;
 const User = require('../models/user');
 const bcrypt=require('bcrypt');
-
+const passportOneSessionPerUser=require('passport-one-session-per-user');
 passport.use(new LocalStrategy({
         usernameField:'email',
         passwordField:'password',
@@ -40,6 +40,9 @@ passport.use(new LocalStrategy({
         })
     }    
 ))
+//it remove the pre session if we logged in in another tab
+passport.use(new passportOneSessionPerUser())
+
 
 //serialize a user means user.id is stored as cookie in browser
 passport.serializeUser(function(user,done){
@@ -56,6 +59,8 @@ passport.deserializeUser(function(id,done){
         return done(null,user);
     })
 })
+
+
 
 passport.checkAuthentication=function(req,res,next){
     if(req.isAuthenticated()){
