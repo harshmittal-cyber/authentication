@@ -1,12 +1,15 @@
 <link rel="shortcut icon" href="/images/profile1.jpg" type="image/x-icon">
 
+<img src="<%=user.avatar%>" alt="<%=user.name%>" width="100px" height="100px">
+
 <% if(locals.user){%>
     <h1>Profile</h1>
-    <p><h4><%=user.email%></h4></p>
-    <p><h4><%=user.name%></h4></p>
-    <form action="/users/update/<%=user.id%>" method="POST">
+    <p><%=user.email%></p>
+    <p><%=user.name%></p>
+    <form action="/users/update/<%=user.id%>" method="POST" enctype="multipart/form-data">
         <input type="email" name="email" value="<%=user.email%>">
         <input type="text" name="name" value="<%=user.name%>">
+        <input type="file" name="avatar">
         <input type="submit" value="submit">
     </form>
     <p> <a href="/users/destroysession">SignOut</a> </p>

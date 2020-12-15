@@ -1,8 +1,9 @@
 const User=require('../models/user');
 const bcrypt=require('bcrypt');
+const fs=require('fs');
+const path=require('path');
 
-module.exports.profile=function(req,res){
-        
+module.exports.profile=function(req,res){   
         return res.render('user_profile',{    
             title:'Profile'     
         })
@@ -52,7 +53,7 @@ module.exports.create=function(req,res){
                 return res.redirect('/users/signin');
             })
         }else{
-            req.flash('error',`User already exist`)
+            req.flash('error','User already exist')
             return res.redirect('back');
         }
     })
@@ -60,13 +61,33 @@ module.exports.create=function(req,res){
 }
 
 //profile update handler
-module.exports.update=function(req,res){
+module.exports.update=async function(req,res){
     if(req.user.id==req.params.id){
-        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
-            return res.redirect('back')
-        })
-    }else{
-        return res.status(401).send('Unauthorized');
+        try{
+            let user=await User.findById(req.params.id);
+            User.uploadedAvatar(req,res,function(err){
+                if(err){console.log('Multer error:',err);}
+
+                user.name=req.body.name;
+                user.email=req.body.email;
+
+                if(req.file){
+                    //if avatar is already there and we choose to update it then we have to unlink the previous one
+                    if(user.avatar){
+                        // for deleting file we need fs
+                        fs.unlinkSync(path.join(__dirname,'..',user.avatar))
+                    }
+
+                    user.avatar=User.avatarPath + '/' +req.file.filename;
+                }
+                user.save();
+                return res.redirect('back');
+            })
+
+        }catch(err){
+            req.flash('error'.err);
+            return res.redirect('back');
+        }
     }
 }
 

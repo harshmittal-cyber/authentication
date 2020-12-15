@@ -31,7 +31,8 @@ app.use(sassMiddleware({
     prefix:'/css'
 }))
 //for layouts 
-app.use(express.static('./assets'))
+app.use(express.static('./assets'));
+app.use('/uploads',express.static(__dirname + '/uploads'));
 app.use(expressLayouts);
 
 //extract the styles
