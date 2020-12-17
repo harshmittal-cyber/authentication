@@ -1,22 +1,43 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/authentication.css">
-<h1>Sign In</h1>
-<p>
-    <a href="/users/signup">
-        SignUp
-    </a>
-</p>
-<form action="/users/create-session" method="POST">
-    
-    <label for="email">Email</label>
-    <input type="email" name="email" placeholder="Your email" required>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" placeholder="Your password" required>
-    
-    <button type="submit">SignIn</button>
+
+<form action="/users/create-session" method="POST" class="login-form">
+        <h1 style="text-align: center;">Sign In</h1>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="name" class="form-control" placeholder="Enter Username" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Enter password" required>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">SignIn</button>
+        </div>
+
+        <div class="form-group">
+            <b>Create an account?</b>
+            <a href="/users/signup">SignUp</a>
+        </div>
+
+        <div class="form-group">
+            <img src="https://www.flaticon.com/svg/static/icons/svg/2702/2702602.svg" alt="google" class="mr-3 mt-3 rounded-circle" style="width:20px;" >
+            <a href="/users/auth/google">SignIn With Google</a>
+        </div>
 </form>
 
-<p>
-    <a href="/users/auth/google">SignIn With Google</a>
-</p>
 
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

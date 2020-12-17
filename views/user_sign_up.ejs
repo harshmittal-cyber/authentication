@@ -1,31 +1,48 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/authentication.css">
 
-<p>
-    <a href="/users/signin">
-        SignIn
-    </a>
-</p>
 
-    <h1>Sign Up</h1>
-    <form action="/users/create" method="POST">
+   
+<form action="/users/create" method="POST" class="login-form">
+        <h1 style="text-align: center;">Sign Up</h1>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" placeholder="Your email">
+        </div>
+        
+        <div class="form-group">
+            <label for="name">UserName</label>
+            <input type="text" class="form-control" name="name" placeholder="Username">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Your password">
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
+        </div>
     
-        
-        <label for="email">Email</label>
-        <input type="email" name="email" placeholder="Your email" required>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">SignUp</button>
+        </div>
 
-        <label for="name">UserName</label>
-        <input type="text" name="name" placeholder="Username" required>
-
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Your password" required>
-
-        <label for="confirm_password">Confirm Password</label>
-        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-        
-        <button type="submit">SignUp</button>
-    </form>
+        <div class="form-group">
+            <b>Already Have an account?</b>
+            <a href="/users/signin">Login</a>
+        </div>
+        <div class="form-group">
+            <img src="https://www.flaticon.com/svg/static/icons/svg/2702/2702602.svg" alt="google" class="mr-3 mt-3 rounded-circle" style="width:20px;" >
+            <a href="/users/auth/google">SignUp with Google</a>
+        </div>
+</form>
 
 
-<p>
-    <a href="/users/auth/google">SignUp with Google</a>
-</p>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="/js/signup.js"></script>

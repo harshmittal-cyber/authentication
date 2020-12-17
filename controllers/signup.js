@@ -12,16 +12,21 @@ module.exports.signup=function(req,res){
 }
 
 module.exports.create=function(req,res){
-    //TODO LATER
+    //if any field is empty
+    if(!req.body.email || !req.body.name || !req.body.password){
+        req.flash('error','All Fields are required');
+        return res.redirect('back');
+    }
+
     //if password not matches with confirm password
     if (req.body.password!=req.body.confirm_password){
         req.flash('error','Password Not matched')
         return res.redirect('back');    
     }
     
-    User.findOne({email:req.body.email},function(err,user){
+    User.findOne({email:req.body.email},{name:req.body.name},function(err,user){
         if(err){console.log('Error in finding a user'); return;}
-
+        
         if(!user){
             User.create(req.body,function(err,user){
                 if(err){console.log('Error in creating a user',err)}
