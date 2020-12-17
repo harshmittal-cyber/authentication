@@ -9,7 +9,7 @@ const userSchema=new mongoose.Schema({
     email:{
         type:String,
         required:true,
-        unique:true
+        unique:true,
     },
     name:{
         type:String,
@@ -17,7 +17,7 @@ const userSchema=new mongoose.Schema({
     },
     password:{
         type:String,
-        required:true
+        required:true,
     },
     avatar:{
         type:String
@@ -26,11 +26,7 @@ const userSchema=new mongoose.Schema({
     timestamps:true
 })
 
-//Adding a virtual property of islocked to help us
-userSchema.virtual('isLocked').get(function(){
-    //check for future lockuntil timestamp
-    return !!(this.lockUntil && this.lockUntil > Date.now());
-})
+
 
 //to encrypt the password
 userSchema.pre('save',function(next){
@@ -47,7 +43,6 @@ userSchema.pre('save',function(next){
         bcrypt.hash(user.password,salt,function(err,hash){
             if(err){return next(err)}
             user.password=hash;
-            user.save();
             next();
         })
     })
