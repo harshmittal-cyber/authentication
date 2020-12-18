@@ -6,7 +6,7 @@ const passportOneSessionPerUser=require('passport-one-session-per-user');
 passport.use(new LocalStrategy({
         usernameField:'email',
         passwordField:'password',
-        passReqToCallback:true
+        passReqToCallback:true,
     },function(req,email,password,done){
         User.findOne({email:email},function(err,user){
             if(err){
@@ -31,6 +31,7 @@ passport.use(new LocalStrategy({
                    req.flash('error','Invalid Userrname or Password')
                     return done(null,false)
                 }
+
                 //if result comes then return the user
                 if(result){
                     // req.flash('success','Logged In Successfully')

@@ -1,5 +1,6 @@
 const User=require('../models/user');
 const bcrypt=require('bcrypt');
+const random=require('randomstring');
 
 //signup handler
 module.exports.signup=function(req,res){
@@ -19,14 +20,14 @@ function validateEmail(email) {
 //IF TRUE
 function validatePassword(password) {
     const re = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])([a-zA-Z0-9@$!%*?&]{8,})$/;
-    return re.test(password);
-    
+    return re.test(password); 
 }
 
 module.exports.create=function(req,res){
 
     const email=req.body.email;
 
+    //checking if email is valid or not
     if(!validateEmail(email)){
         req.flash('error','Enter a valid email');
         return res.redirect('back');
@@ -38,7 +39,7 @@ module.exports.create=function(req,res){
     }
 
     const password=req.body.password;
-
+    //checking if password satisfy the secure password condition or not
     if(!validatePassword(password)){
         req.flash('error','Enter a valid password');
         return res.redirect('back');
@@ -48,12 +49,19 @@ module.exports.create=function(req,res){
         if(err){console.log('Error in finding a user'); return;}
         
         if(!user){
-            User.create(req.body,function(err,user){
-                if(err){console.log('Error in creating a user',err)}
-                
-                req.flash('success','User Created')
-                return res.redirect('/users/signin');
+            bcrypt.hash(req.body.password,10,function(err,hash){
+                User.create({
+                    email:req.body.email,
+                    password:hash,
+                    name:req.body.name,
+                    verified:false
+                })
+
+
+                req.flash('success','User created')
+                return res.redirect('/users/signin')
             })
+            
         }else{
             req.flash('error','User already exist')
             return res.redirect('back');

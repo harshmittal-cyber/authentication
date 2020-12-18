@@ -31,6 +31,7 @@
     "passport-google-oauth": "^2.0.0",
     "passport-local": "^1.0.0",
     "passport-one-session-per-user": "^1.0.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "randomstring": "^1.1.5"
   }
 }
