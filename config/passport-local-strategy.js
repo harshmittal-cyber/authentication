@@ -26,14 +26,11 @@ passport.use(new LocalStrategy({
                     return done(null,false);
                 }
 
-                if(user.email===false){
+                if(user.verified===false){
                    //if email is not verified
-                   req.flash('error','Invalid Userrname or Password')
-                    return done(null,false)
-                }
-
-                //if result comes then return the user
-                if(result){
+                   req.flash('error','Please Verify Your email')
+                    return done(null,false,{message:'Email Not verified'})
+                }else{
                     // req.flash('success','Logged In Successfully')
                     return done(null,user)
                 }

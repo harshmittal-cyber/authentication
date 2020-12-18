@@ -20,6 +20,12 @@ const userSchema=new mongoose.Schema({
     avatar:{
         type:String
     },
+    //for google verification
+    google:{
+        type:Boolean,
+        required:true,
+        default:false
+    },
     verified:{
         type:Boolean,
         required:true,

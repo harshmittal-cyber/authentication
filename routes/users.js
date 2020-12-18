@@ -5,7 +5,6 @@ const user_controller=require('../controllers/usercontroller')
 const signup_controller=require('../controllers/signup');
 const signin_controller=require('../controllers/signin');
 const signout_controller=require('../controllers/signout');
-
 //User update and profile router
 router.get('/profile/:id',passport.checkAuthentication,user_controller.profile);
 router.post('/update/:id',user_controller.update);
