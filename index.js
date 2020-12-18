@@ -18,7 +18,7 @@ const MongoStore=require('connect-mongo')(session);
 const flash=require('connect-flash');
 const customMware=require('./config/middleware');
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended:true}));
 
 //for cookies
 app.use(cookieParser());

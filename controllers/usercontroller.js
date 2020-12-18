@@ -21,7 +21,6 @@ module.exports.update=async function(req,res){
 
                 user.name=req.body.name;
                 user.email=req.body.email;
-
                 if(req.file){
                     //if avatar is already there and we choose to update it then we have to unlink the previous one
                     if(user.avatar){

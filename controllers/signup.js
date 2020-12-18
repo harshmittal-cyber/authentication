@@ -10,21 +10,41 @@ module.exports.signup=function(req,res){
         title:'SignUp'
     })
 }
+// REGX* FOR VALIDATING NEW ENTERED EMAIL
+function validateEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());   
+}
+// VALIDATING NEW PASSCODE WITH REGX* 
+//IF TRUE
+function validatePassword(password) {
+    const re = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])([a-zA-Z0-9@$!%*?&]{8,})$/;
+    return re.test(password);
+    
+}
 
 module.exports.create=function(req,res){
-    //if any field is empty
-    if(!req.body.email || !req.body.name || !req.body.password){
-        req.flash('error','All Fields are required');
+
+    const email=req.body.email;
+
+    if(!validateEmail(email)){
+        req.flash('error','Enter a valid email');
         return res.redirect('back');
     }
-
     //if password not matches with confirm password
     if (req.body.password!=req.body.confirm_password){
         req.flash('error','Password Not matched')
         return res.redirect('back');    
     }
-    
-    User.findOne({email:req.body.email},{name:req.body.name},function(err,user){
+
+    const password=req.body.password;
+
+    if(!validatePassword(password)){
+        req.flash('error','Enter a valid password');
+        return res.redirect('back');
+    }
+
+    User.findOne({email:req.body.email},function(err,user){
         if(err){console.log('Error in finding a user'); return;}
         
         if(!user){
