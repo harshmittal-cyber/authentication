@@ -2,7 +2,6 @@ const User=require('../models/user');
 const bcrypt=require('bcrypt');
 const random=require('randomstring');
 const token=require('../models/verify_token');
-const request=require('request');
 const nodemailer=require('nodemailer');
 //signup handler
 module.exports.signup=function(req,res){
@@ -70,35 +69,7 @@ module.exports.create=function(req,res){
                 verifytoken:randomtoken,
                 email:req.body.email
             })
-
-            //sending email via sendinblue api
-            // let sendSMTPEmail={
-            //     method:'POST',
-            //     Port:587,
-            //     url:"https://api.sendinblue.com/v3/smtp/email",
-            //     headers:{
-            //         accept:'application/json',
-            //         'content-type':'application/json',
-            //         'api-key':'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'
-            //     },
-            //     body:{
-            //         sender:{name:'Team Authentication',email:'mittalharsh4321@gmail.com'},
-            //         to:[{email:email}],
-            //         replyTo:{email:'mittalharsh4321@gmail.com'},
-            //         params:{link:'http://localhost:1000/verify/?token='+randomtoken},
-            //         // templateId:2  
-            //         subject:'Verify Email',
-            //         htmlContent: `Hi \n Please click on the Link below to verify your email:`,
-                   
-            //     },
-            //     json:true
-            // };
-            // request(sendSMTPEmail,function(err,response,body){
-            //     if(err){
-            //         console.log('error',err)
-            //     }
-            //     console.log(body)
-            // })
+            //sending mails via nodemailer
             let transporter = nodemailer.createTransport({
                 service: 'gmail',
                 port:587,
@@ -112,7 +83,7 @@ module.exports.create=function(req,res){
                 from: 'mittalharsh4321@gmail.com',
                 to: req.body.email,
                 subject: 'Verification Email',
-                text: 'Verify Your Email By clicking on Link: <a href="http://localhost:1000/verify/?token='+randomtoken+'">Verify</a>'
+                text: 'Verify Your Email By clicking on Link: " <a href="http://localhost:1000/verify/?token='+randomtoken+'">"Verify</a>'
               };
               
               transporter.sendMail(mailOptions, function(error, info){

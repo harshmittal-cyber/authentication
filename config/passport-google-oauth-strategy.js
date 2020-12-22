@@ -20,14 +20,14 @@ passport.use(new googleStrategy({
             }else{
                 //if user is not in database the create the user and return the user
                 User.create({
-                    name:profile.displayName,
+                    name:"Name",
                     email:profile.emails[0].value,
-                    password:profile.displayName,
+                    password:"password",
                     verified:true,
                     google:true
                 },function(err,user){
-                    if(err){console.log('Error in creating a user'); return}
-
+                    if(err){console.log('Error in creating a user',err); return}
+                
                     return done(null,user)
                 })
             }

@@ -1,7 +1,6 @@
 const express=require('express');
 const app=express();
 const port=1000;
-const bcrypt=require('bcrypt');
 const path=require('path');
 const cookieParser=require('cookie-parser');
 const expressLayouts = require('express-ejs-layouts');

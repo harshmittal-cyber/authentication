@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/authentication.css">
 
 
@@ -9,14 +8,11 @@
             <input type="email" class="form-control" name="email" placeholder="Enter email" required>
         </div>
 
-        <div class="form-group">
-            <label>Username</label><small>(optional)</small>
-            <input type="text" name="name" class="form-control" placeholder="Enter Username">
-        </div>
-        
-        <div class="form-group">
+        <div class="form-group"  style="position: relative;">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" placeholder="Enter password" required>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" required>
+            <i class="fas fa-eye-slash" style="position: absolute; left:92%; top: 35px; cursor: pointer;" id="eye-splash2"></i>
+            <small style="cursor: pointer;"><a href="/forgetpassword">Forget Password?</a></small>
         </div>
 
        
@@ -43,5 +39,25 @@
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<!-- jQuery library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script>
+    
+    //if user want to see password field password
+    var click=false;
+    $('#eye-splash2').on('click',function(){
+        if(!click==true){
+            $('#password').attr('type','text');
+            $(this).toggleClass('fa-eye-slash fa-eye')
+            click=true;
+        }else{
+            $('#password').attr('type','password');
+            $(this).toggleClass('fa-eye fa-eye-slash')
+            click=false;
+        }
+    })
+
+</script>

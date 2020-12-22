@@ -1,7 +1,4 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/authentication.css">
-
-
    
 <form action="/users/create" method="POST" class="login-form">
         <h1 style="text-align: center; color: grey">Sign Up</h1>
@@ -15,10 +12,10 @@
             <input type="text" class="form-control" name="name" placeholder="Username" required>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="font-awesome" style="position: relative;">
             <label for="password">Password</label>
             <input type="password" class="form-control" name="password" id="password" placeholder="Your password" required>
-            
+            <i class="fas fa-eye-slash" style="position: absolute; left:92%; top: 35px; cursor: pointer;" id="eye-splash"></i>
             <div id="message" style="display: none; color: #397199;">
                 <small>Password must contain special character,UpperCase,lowercase,a number</small>
             </div>
@@ -26,9 +23,10 @@
 
         
 
-        <div class="form-group">
+        <div class="form-group" style="position: relative;">
             <label for="confirm_password">Confirm Password</label>
-            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
+            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+            <i class="fas fa-eye-slash" style="position: absolute; left:92%; top: 35px; cursor: pointer;" id="eye-splash1"></i>
         </div>
         
         <div class="form-group">
@@ -52,21 +50,46 @@
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
 <script>
-   
-    var message=document.getElementById('message');
-    var password_input=document.getElementById('password');
+//    //if user focus on password input field then it show message
+    $('#password').on('focus',function(){
+        $('#message').css('display','block');
+    })
 
-    password_input.onfocus=function(){
-        message.style.display="block";
-    }
+    //if user click outside password input tag then message disappear
+    $('#password').on('blur',function(){
+        $('#message').css('display','none')
+    })
 
-    password_input.onblur=function(){
-        message.style.display="none";
-    }
-</script>
+    var click=false;
+    //if user want to see password 
+    $('#eye-splash').on('click',function(){
+        if(!click==true){
+            $('#password').attr('type','text');
+            $(this).toggleClass('fa-eye-slash fa-eye')
+            click=true;
+        }else{
+            $('#password').attr('type','password');
+            $(this).toggleClass('fa-eye fa-eye-slash')
+            click=false;
+        }
+    })
+
+
+    //if user want to see confirm password field password
+    var click1=false;
+    $('#eye-splash1').on('click',function(){
+        if(!click1==true){
+            $('#confirm_password').attr('type','text');
+            $(this).toggleClass('fa-eye-slash fa-eye')
+            click1=true;
+        }else{
+            $('#confirm_password').attr('type','password');
+            $(this).toggleClass('fa-eye fa-eye-slash')
+            click1=false;
+        }
+    })
+</script> 
