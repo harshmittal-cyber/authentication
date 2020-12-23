@@ -42,7 +42,7 @@ module.exports.forget=function(req,res){
                 from: 'mittalharsh4321@gmail.com',
                 to: req.body.email,
                 subject: 'Reset Password Email',
-                text:'Reset Your password'
+                text:'Reset Your password: " <a href="http://localhost:1000/reset/?token='+randomtoken+'">"Verify</a>'
               };
               
               transporter.sendMail(mailOptions, function(error, info){
