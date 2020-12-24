@@ -3,16 +3,22 @@ const token=require('../models/token');
 const bcrypt=require('bcrypt')
 const duration=600000;   //only for 10mins
 
+//to show the form for resetting password if link is not expired 
 module.exports.reset=function(req,res){
-    token.findOne({token:req.query.token},function(err,token){
-        if(token && (Date.now() - token.created)<duration){
+    token.findOne({token:req.query.token},function(err,tokenf){
+        if(err){
+            console.log('error',err)
+        }
+        //if token isvalid the show the reset pasword form
+        if(tokenf && (Date.now() - tokenf.created)<duration){
             res.render('reset_form',{
                 title:'Reset Password',
-                token:token.token,
-                email:token.email
+                token:tokenf.token,
+                email:tokenf.email
             })
         }else{
-            
+            //if token is expired the delete the token from database
+            token.findByIdAndDelete(tokenf._id,function(err,token){})
             req.flash('error','Link was expired or invalid')
             return res.redirect('/')
         }
@@ -20,6 +26,8 @@ module.exports.reset=function(req,res){
     
 }
 
+
+//for updating or resettting the password
 module.exports.resetpassword=function(req,res){
     token.findOne({token:req.body.token},function(err,tokenf){
         //if token is not expired then reset the passsword
@@ -30,12 +38,13 @@ module.exports.resetpassword=function(req,res){
                 //password check for strong password
                 function validatePassword(password) {
                     const re = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])([a-zA-Z0-9@$!%*?&]{8,})$/;
-                    return re.test(password);
-                    
+                    return re.test(password);  
                 }
 
                 //matching the form password with password check validation function
                 if(validatePassword(req.body.reset_password)){
+
+                    //if password match then delete the token and update the user password
                     if(req.body.reset_password===req.body.reset_confirm_password){
                         token.findByIdAndDelete(tokenf._id,function(err,token){
 
@@ -52,6 +61,7 @@ module.exports.resetpassword=function(req,res){
                         req.flash('error','Password not matched');
                         return res.redirect('back')
                     }
+                    
                     //if password is not valid then it send Invalid password
                 }else{
                     console.log('Invalid Password');

@@ -6,13 +6,14 @@
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+            <small style="cursor: pointer;"><a class="link" href="/forgetpassword" style="float: right; color: #0366d6;  background-color: initial; text-decoration: none ; font-size: 12px;">Forget Password?</a></small>
         </div>
 
         <div class="form-group"  style="position: relative;">
             <label for="password">Password</label>
             <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" required>
             <i class="fas fa-eye-slash" style="position: absolute; left:92%; top: 35px; cursor: pointer;" id="eye-splash2"></i>
-            <small style="cursor: pointer;"><a href="/forgetpassword">Forget Password?</a></small>
+            
         </div>
 
        
@@ -45,8 +46,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script>
-  
-    //if user want to see password field password
+      //if user want to see password field password
     var click=false;
     $('#eye-splash2').on('click',function(){
         if(!click==true){

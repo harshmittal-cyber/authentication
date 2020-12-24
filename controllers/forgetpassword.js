@@ -2,13 +2,12 @@ const User=require('../models/user');
 const token=require('../models/token');
 const random=require('randomstring');
 const nodemailer=require('nodemailer');
-
+//for rendering user email confirmation for resetting the password
 module.exports.forgetpassword=function(req,res){
     return res.render('forget_password',{
-        title:"ForgetPassword"
+        title:"User Confirmation"
     })
 }
-
 
 module.exports.forget=function(req,res){
     User.findOne({email:req.body.email},function(err,user){
@@ -39,10 +38,10 @@ module.exports.forget=function(req,res){
               });
               
               let mailOptions = {
-                from: 'mittalharsh4321@gmail.com',
+                from: 'Team Authentication',
                 to: req.body.email,
                 subject: 'Reset Password Email',
-                text:'Reset Your password: " <a href="http://localhost:1000/reset/?token='+randomtoken+'">"Verify</a>'
+                text:'Reset Your password: " <a href="http://localhost:1000/reset/?token='+randomtoken+'">"Verify</a> \n \n This link is valid for only 10 min.',
               };
               
               transporter.sendMail(mailOptions, function(error, info){
