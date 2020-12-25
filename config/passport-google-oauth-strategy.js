@@ -22,7 +22,7 @@ passport.use(new googleStrategy({
                 User.create({
                     name:"Name",
                     email:profile.emails[0].value,
-                    password:"password",
+                    password:"$Dca1567",    //for validation of password
                     verified:true,
                     google:true
                 },function(err,user){

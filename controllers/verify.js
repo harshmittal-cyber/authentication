@@ -10,7 +10,7 @@ module.exports.verify=function(req,res){
             User.findOne({email:tokenverify.email},function(err,userverified){
                 if(userverified){
                     //if user verified then update the user
-                    User.findByIdAndUpdate(userverified._id,{verified:true},{google:true},function(err,user){
+                    User.findByIdAndUpdate(userverified._id,{verified:true,google:true},function(err,user){
                         console.log('verified')
                     })
                 

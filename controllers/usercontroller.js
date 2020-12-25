@@ -40,3 +40,20 @@ module.exports.update=async function(req,res){
     }
 }
 
+module.exports.delete=function(req,res){
+    User.findByIdAndRemove({_id:req.params.id},function(err,user){
+        if(err){
+            console.log('error',err);
+            req.flash('error',err);
+            return res.redirect('back')
+        }
+        if(user.avatar){
+            //unlink the file from server if user delete the account
+            fs.unlinkSync(path.join(__dirname,'..',user.avatar))
+        }
+        console.log('Account Deleted')
+        req.flash('success','Account Deleted');
+        req.logout();
+        return res.redirect('/')
+    })
+}
