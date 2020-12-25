@@ -9,6 +9,8 @@ const signout_controller=require('../controllers/signout');
 router.get('/profile/:id',passport.checkAuthentication,user_controller.profile);
 router.post('/update/:id',user_controller.update);
 
+//delete the account
+router.get('/destroy/:id',passport.checkAuthentication,user_controller.delete)
 //SignIn router
 router.get('/signin',signin_controller.signin);
 router.post('/create-session',

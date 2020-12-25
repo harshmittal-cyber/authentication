@@ -9,6 +9,7 @@ module.exports.reset=function(req,res){
         if(err){
             console.log('error',err)
         }
+
         //if token isvalid the show the reset pasword form
         if(tokenf && (Date.now() - tokenf.created)<duration){
             res.render('reset_form',{

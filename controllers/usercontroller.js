@@ -40,3 +40,15 @@ module.exports.update=async function(req,res){
     }
 }
 
+module.exports.delete=function(req,res){
+    User.findByIdAndRemove({_id:req.params.id},function(err,user){
+        if(err){
+            console.log('error',err);
+            req.flash('error',err);
+            return res.redirect('back')
+        }
+        req.flash('success','Account Deleted');
+        req.logout();
+        return res.redirect('/')
+    })
+}
