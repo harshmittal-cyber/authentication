@@ -2,11 +2,6 @@ const mongoose=require('mongoose');
 const multer=require('multer');
 const path=require('path');
 const AVATAR_PATH=path.join('/uploads/users/avatars');
-// these values can be whatever you want - we're defaulting to a
-    // max of 5 attempts, resulting in a 2 hour lock
-const  MAX_LOGIN_ATTEMPTS = 5;
-const  LOCK_TIME = 2 * 60 * 60 * 1000;
-
 
 const userSchema=new mongoose.Schema({
     email:{

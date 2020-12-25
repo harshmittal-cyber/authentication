@@ -47,6 +47,11 @@ module.exports.delete=function(req,res){
             req.flash('error',err);
             return res.redirect('back')
         }
+        if(user.avatar){
+            //unlink the file from server if user delete the account
+            fs.unlinkSync(path.join(__dirname,'..',user.avatar))
+        }
+        console.log('Account Deleted')
         req.flash('success','Account Deleted');
         req.logout();
         return res.redirect('/')
