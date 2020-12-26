@@ -12,6 +12,7 @@ const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 const passportGoogle=require('./config/passport-google-oauth-strategy');
 const passportOneSessionPerUser=require('passport-one-session-per-user');
+const passportJWT=require('./config/passport-jwt-strategy');
 const session=require('express-session');
 const MongoStore=require('connect-mongo')(session);
 const flash=require('connect-flash');
