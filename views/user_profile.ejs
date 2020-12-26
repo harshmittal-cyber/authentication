@@ -1,6 +1,6 @@
 <link rel="shortcut icon" href="/images/profile1.jpg" type="image/x-icon">
 
-<img src="<%=user.avatar%>" alt="<%=user.name%>" width="100px" height="100px">
+<img src="<%=user.avatar%>" alt="<%=user.name%>" width="100px" height="100px" style="border-radius: 50%;">
 
 <% if(locals.user){%>
     <h1>Profile</h1>
@@ -19,12 +19,23 @@
             <input type="file" name="avatar">
         </div>
        <div class="form-group">
-            <input type="submit" value="submit">
+            <button class="btn btn-success" style="border-radius: 20px;">Submit</button>
        </div>
         
     </form>
-    <p> <a href="/users/destroysession">SignOut</a> </p>
-    <a href="/users/destroy/<%=user.id%>">Delete Account</a>
+   <div class="form-group">
+    <a href="/users/destroysession">
+      <button type="button" class="btn btn-success " style="border-radius: 20px;"> SignOut </button>
+    </a> 
+   </div>
+    <div class="form-group">
+        <a href="/users/destroy/<%=user.id%>">
+            <button type="button" class="btn btn-danger" style="border-radius: 20px;">
+                Delete Account
+            </button>    
+        </a>
+    </div>
+   
 <% }else{%>
     <p><a href="/users/signin">SignIn</a></p>
     <p><a href="/users/signup">SignUp</a></p>

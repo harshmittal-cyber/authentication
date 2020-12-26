@@ -8,6 +8,10 @@ const reset_controller=require('../controllers/reset_controller');
 
 router.get('/',home_controller.home);
 router.use('/users',require('./users'));
+//api routes
+router.use('/api',require('./api'))
+
+
 router.get('/verify',verify_controller.verify);
 
 //forget password

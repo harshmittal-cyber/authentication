@@ -41,6 +41,7 @@ module.exports.update=async function(req,res){
 }
 
 module.exports.delete=function(req,res){
+    //here we find the user bu user id and then remove their info and avatar from server and db
     User.findByIdAndRemove({_id:req.params.id},function(err,user){
         if(err){
             console.log('error',err);

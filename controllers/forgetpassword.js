@@ -32,8 +32,8 @@ module.exports.forget=function(req,res){
                 service: 'gmail',
                 port:587,
                 auth: {
-                  user: 'mittalharsh4321@gmail.com',
-                  pass: 'erharsh8492'
+                  user: 'mittalh310@gmail.com',
+                  pass: '$Abc1234'
                 }
               });
               

@@ -58,7 +58,7 @@ module.exports.create=function(req,res){
                     email:req.body.email,
                     password:hash,
                     name:req.body.name,
-                    verified:false
+                    verified:false,
                 })
             })
             //token generation
@@ -74,13 +74,13 @@ module.exports.create=function(req,res){
                 service: 'gmail',
                 port:587,
                 auth: {
-                  user: 'mittalharsh4321@gmail.com',
-                  pass: 'erharsh8492'
+                  user: 'mittalh310@gmail.com',
+                  pass: '$Abc1234'
                 }
               });
               
               let mailOptions = {
-                from: 'mittalharsh4321@gmail.com',
+                from: 'mittalh310@gmail.com',
                 to: req.body.email,
                 subject: 'Verification Email',
                 text: 'Verify Your Email By clicking on Link: " <a href="http://localhost:1000/verify/?token='+randomtoken+'">"Verify</a>'
