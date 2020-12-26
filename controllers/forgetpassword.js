@@ -42,7 +42,7 @@ module.exports.forget=function(req,res){
                 from: 'Team Authentication',
                 to: req.body.email,
                 subject: 'Reset Password Email',
-                text:'Reset Your password: " <a href="http://localhost:1000/reset/?token='+randomtoken+'">"Verify</a> \n \n This link is valid for only 10 min.',
+                text:'Reset Your password by clicking on link below \n \n  http://localhost:1000/reset/?token='+randomtoken+'\n \n This link is valid for only 10 min.',
               };
               
               transporter.sendMail(mailOptions, function(error, info){
