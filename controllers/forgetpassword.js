@@ -2,6 +2,7 @@ const User=require('../models/user');
 const token=require('../models/token');
 const random=require('randomstring');
 const nodemailer=require('nodemailer');
+const jwt=require('jsonwebtoken');
 //for rendering user email confirmation for resetting the password
 module.exports.forgetpassword=function(req,res){
     return res.render('forget_password',{
@@ -20,7 +21,7 @@ module.exports.forget=function(req,res){
         }
 
         if(user){
-            let randomtoken=random.generate();
+            let randomtoken=jwt.sign(user.toJSON(),'authentication',{expiresIn:'600000'});
 
             //creating token in database
             token.create({
