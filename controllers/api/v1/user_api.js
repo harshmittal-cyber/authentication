@@ -13,6 +13,12 @@ module.exports.createSession=async function(req,res){
         }
         
         bcrypt.compare(req.body.password,user.password,function(err,result){
+            if(err){
+                console.log('error',err);
+                return res.status(400).json({
+                    message:'Bad Request Check your Internet Connection'
+                })
+            }
             if(!result){
                 return res.status(422).json({
                     message:'Invalid Username or Password'
@@ -20,7 +26,7 @@ module.exports.createSession=async function(req,res){
             }else{
                 return res.status(200).json({
                     message:'Sign In successfully',
-                    data:jwt.sign(user.toJSON(),'authentication',{expiresIn:'10000'})
+                    data:jwt.sign(user.toJSON(),'authentication',{expiresIn:'600000'})
                 })
             }
         })

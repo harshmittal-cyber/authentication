@@ -22,7 +22,6 @@ module.exports.forget=function(req,res){
 
         if(user){
             let randomtoken=jwt.sign(user.toJSON(),'authentication',{expiresIn:'600000'});
-
             //creating token in database
             token.create({
                 token:randomtoken,
@@ -39,7 +38,7 @@ module.exports.forget=function(req,res){
               });
               
               let mailOptions = {
-                from: 'Team Authentication',
+                from: 'mittalh310@gmail.com',
                 to: req.body.email,
                 subject: 'Reset Password Email',
                 text:'Reset Your password by clicking on link below \n \n  http://localhost:1000/reset/?token='+randomtoken+'\n \n This link is valid for only 10 min.',

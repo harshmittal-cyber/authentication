@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/css/header.css" />
+<header id="layout-header">
+  <nav>
+    <div class="main-logo">
+      <p>
+        <a href="/"> authentication </a>
+      </p>
+    </div>
+
+    <div class="auth-links">
+      <ul>
+        <% if (locals.user) { %>
+        <li>
+          <!-- when we click on name it redirect to user profile page -->
+          <a href="/users/profile/:id"><%= user.name %></a>
+        </li>
+        <li>
+          <a href="/users/destroysession">Sign Out</a>
+        </li>
+        <img
+          src="<%= user.avatar %>"
+          alt="<%= user.name %>"
+          width="30"
+          height="30"
+          style="
+            border-radius: 50px;
+            border: none;
+            position: relative;
+            top: -1px;
+            object-fit: cover;
+            box-sizing: border-box;
+          "
+        />
+
+        <% }else{ %>
+        <li>
+          <a href="/users/signup">Sign Up</a>
+        </li>
+
+        <li>
+          <a href="/users/signin">Sign In</a>
+        </li>
+
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+</header>

@@ -1,48 +1,56 @@
 <html>
-    <head>
-        <title><%=title%></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-     
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
-        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
-        <link rel="stylesheet" href="/css/layout.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
-        <%-style-%>
-    </head>
-    <body>
-        <main id="layout-main">
-            
-            <%- body -%>
-        </main>
-        
-        <%-script -%>
-      
-        <script>
-            //for notification messages
-            <% if(flash.success && flash.success.length>0){%>
-                new Noty({
-                    layout:'topRight',
-                    text: '<%=flash.success%>',
-                    theme:'relax',
-                    timeout:1500,
-                    type:'success',
-                    closeWith:['click','button'],
-                  
-                    }).show();
-            <% } %>
+  <head>
+    <title><%=title%></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-            <% if(flash.error && flash.error.length>0){%>
-                new Noty({
-                    layout:'topRight',
-                    text: '<%=flash.error%>',
-                    theme:'relax',
-                    timeout:1500,
-                    type:'error',
-                    closeWith:['click','button']
-                    }).show();
-            <% } %> 
-        </script>
-    </body>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css"
+    />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <%-style-%>
+  </head>
+  <body>
+    <%-include('_header');%>
+    <main id="layout-main"><%- body -%></main>
+
+    <%-script -%>
+
+    <script>
+      //for notification messages
+      <% if(flash.success && flash.success.length>0){%>
+          new Noty({
+              layout:'topRight',
+              text: '<%=flash.success%>',
+              theme:'relax',
+              timeout:1500,
+              type:'success',
+              closeWith:['click','button'],
+
+              }).show();
+      <% } %>
+
+      <% if(flash.error && flash.error.length>0){%>
+          new Noty({
+              layout:'topRight',
+              text: '<%=flash.error%>',
+              theme:'relax',
+              timeout:1500,
+              type:'error',
+              closeWith:['click','button']
+              }).show();
+      <% } %>
+    </script>
+  </body>
 </html>

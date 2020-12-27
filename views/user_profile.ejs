@@ -1,42 +1,47 @@
-<link rel="shortcut icon" href="/images/profile1.jpg" type="image/x-icon">
+<link rel="shortcut icon" href="/images/profile1.jpg" type="image/x-icon" />
 
-<img src="<%=user.avatar%>" alt="<%=user.name%>" width="100px" height="100px" style="border-radius: 50%;">
+<img src="<%=user.avatar%>" alt="<%=user.name%>" width="100px" height="100px" />
 
 <% if(locals.user){%>
-    <h1>Profile</h1>
-    <p><%=user.email%></p>
-    <p><%=user.name%></p>
-    <br><br>
-    <form action="/users/update/<%=user.id%>" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <input type="email" name="email" value="<%=user.email%>">
-        </div>
-        <div class="form-group">
-            <input type="text" name="name" value="<%=user.name%>">
-        </div>
+<h1>Profile</h1>
+<p><%=user.email%></p>
+<p><%=user.name%></p>
+<br /><br />
+<form
+  action="/users/update/<%=user.id%>"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <div class="form-group">
+    <input type="email" name="email" value="<%=user.email%>" />
+  </div>
+  <div class="form-group">
+    <input type="text" name="name" value="<%=user.name%>" />
+  </div>
 
-        <div class="form-group">
-            <input type="file" name="avatar">
-        </div>
-       <div class="form-group">
-            <button class="btn btn-success" style="border-radius: 20px;">Submit</button>
-       </div>
-        
-    </form>
-   <div class="form-group">
-    <a href="/users/destroysession">
-      <button type="button" class="btn btn-success " style="border-radius: 20px;"> SignOut </button>
-    </a> 
-   </div>
-    <div class="form-group">
-        <a href="/users/destroy/<%=user.id%>">
-            <button type="button" class="btn btn-danger" style="border-radius: 20px;">
-                Delete Account
-            </button>    
-        </a>
-    </div>
-   
+  <div class="form-group">
+    <input type="file" name="avatar" />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success" style="border-radius: 20px">Submit</button>
+  </div>
+</form>
+<div class="form-group">
+  <a href="/users/destroysession">
+    <button type="button" class="btn btn-success" style="border-radius: 20px">
+      SignOut
+    </button>
+  </a>
+</div>
+<div class="form-group">
+  <a href="/users/destroy/<%=user.id%>">
+    <button type="button" class="btn btn-danger" style="border-radius: 20px">
+      Delete Account
+    </button>
+  </a>
+</div>
+
 <% }else{%>
-    <p><a href="/users/signin">SignIn</a></p>
-    <p><a href="/users/signup">SignUp</a></p>
+<p><a href="/users/signin">SignIn</a></p>
+<p><a href="/users/signup">SignUp</a></p>
 <% } %>
