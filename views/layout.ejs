@@ -28,8 +28,7 @@
     <%-script -%>
 
     <script>
-      //for notification messages
-      <% if(flash.success && flash.success.length>0){%>
+         <% if(flash.success && flash.success.length>0){%>
           new Noty({
               layout:'topRight',
               text: '<%=flash.success%>',

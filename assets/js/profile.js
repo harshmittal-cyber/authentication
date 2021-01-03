@@ -1,12 +1,17 @@
-var form = document.getElementById("form");
+{
+  function editbtn() {
+    $("#account").hide();
+    $("#form").show();
+    $("#img").css("cursor", "pointer");
+    $("#img").click(function () {
+      $("#image").click();
+    });
+  }
 
-var onclick = false;
-function showform() {
-  if (!onclick) {
-    form.style.display = "block";
-    onclick = true;
-  } else {
-    form.style.display = "none";
-    onclick = false;
+  function go() {
+    $("#account").show();
+    $("#form").hide();
+    $("#img").css("cursor", "default");
+    $("#img").off("click");
   }
 }

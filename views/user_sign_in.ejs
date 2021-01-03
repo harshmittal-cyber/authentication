@@ -41,6 +41,7 @@
       class="fas fa-eye-slash"
       style="position: absolute; left: 92%; top: 35px; cursor: pointer"
       id="eye-splash2"
+      onclick="eyesplash()"
     ></i>
   </div>
 
@@ -73,20 +74,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script>
-  //if user want to see password field password
-  var click = false;
-  $("#eye-splash2").on("click", function () {
-    if (!click == true) {
-      console.log("click is true");
-      $("#password").attr("type", "text");
-      $(this).toggleClass("fa-eye-slash fa-eye");
-      click = true;
-    } else {
-      console.log("click is false");
-      $("#password").attr("type", "password");
-      $(this).toggleClass("fa-eye fa-eye-slash");
-      click = false;
-    }
-  });
-</script>
+<script src="/js/usersignin.js"></script>

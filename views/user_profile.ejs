@@ -1,6 +1,5 @@
 <link rel="shortcut icon" href="/images/profile1.jpg" type="image/x-icon" />
 <link rel="stylesheet" href="/css/profile.css" />
-<script src="/assets/js/profile.js"></script>
 
 <% if(locals.user){%>
 <div class="settings">
@@ -20,7 +19,7 @@
       <div class="field-label"><%=user.email%></div>
     </div>
     <div class="btn-grp">
-      <button id="edit-btn">Edit Profile</button>
+      <button id="edit-btn" onclick="editbtn()">Edit Profile</button>
     </div>
   </div>
 
@@ -60,7 +59,7 @@
     </div> -->
 
     <!-- button for hiding edit form -->
-    <div class="go-back" id="go">Go Back</div>
+    <div class="go-back" id="go" onclick="go()">Go Back</div>
   </div>
 </div>
 
@@ -72,20 +71,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script>
-  $("#edit-btn").on("click", function () {
-    $("#account").hide();
-    $("#form").show();
-    $("#img").css("cursor", "pointer");
-    $("#img").click(function () {
-      $("#image").click();
-    });
-  });
-
-  $("#go").on("click", function () {
-    $("#account").show();
-    $("#form").hide();
-    $("#img").css("cursor", "default");
-    $("#img").off("click");
-  });
-</script>
+<script src="/js/profile.js"></script>
