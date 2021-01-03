@@ -5,7 +5,7 @@
 <% if(locals.user){%>
 <div class="settings">
   <div class="image-container">
-    <img src="<%=user.avatar%>" alt="<%=user.name%>" />
+    <img src="<%=user.avatar%>" alt="<%=user.name%>" id="img" />
   </div>
 
   <!-- account or profile -->
@@ -48,13 +48,13 @@
       </div>
 
       <div class="btn-grp">
-        <button class="save-btn">Save</button>
+        <button class="save-btn">Save Changes</button>
       </div>
     </form>
 
     <!-- Delete account button -->
-    <!-- <div class="form-group">
-      <a href="/users/destroy/<%=user.id%>">
+    <!-- <div class="btn-grp">
+      <a href="/users/destroy/<%=user.id%>" style="width: 100%">
         <button class="delete-btn">Delete Account</button>
       </a>
     </div> -->
@@ -76,10 +76,16 @@
   $("#edit-btn").on("click", function () {
     $("#account").hide();
     $("#form").show();
+    $("#img").css("cursor", "pointer");
+    $("#img").click(function () {
+      $("#image").click();
+    });
   });
 
   $("#go").on("click", function () {
     $("#account").show();
     $("#form").hide();
+    $("#img").css("cursor", "default");
+    $("#img").off("click");
   });
 </script>

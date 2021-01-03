@@ -1,39 +1,70 @@
-<link rel="stylesheet" href="/css/authentication.css">
+<link rel="stylesheet" href="/css/authentication.css" />
 
 <form action="/users/create-session" method="POST" class="login-form">
-        <h1 style="text-align: center; color: grey;">Sign In</h1>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" placeholder="Enter email" required>
-            <small style="cursor: pointer;"><a class="link" href="/forgetpassword" style="float: right; color: #0366d6;  background-color: initial; text-decoration: none ; font-size: 12px;">Forget Password?</a></small>
-        </div>
+  <h1 style="text-align: center; color: grey">Sign In</h1>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      placeholder="Enter email"
+      required
+    />
+    <small style="cursor: pointer"
+      ><a
+        class="link"
+        href="/forgetpassword"
+        style="
+          float: right;
+          color: #0366d6;
+          background-color: initial;
+          text-decoration: none;
+          font-size: 12px;
+        "
+        >Forget Password?</a
+      ></small
+    >
+  </div>
 
-        <div class="form-group"  style="position: relative;">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" required>
-            <i class="fas fa-eye-slash" style="position: absolute; left:92%; top: 35px; cursor: pointer;" id="eye-splash2"></i>   
-        </div>
+  <div class="form-group" style="position: relative">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      id="password"
+      placeholder="Enter password"
+      required
+    />
+    <i
+      class="fas fa-eye-slash"
+      style="position: absolute; left: 92%; top: 35px; cursor: pointer"
+      id="eye-splash2"
+    ></i>
+  </div>
 
-       
-        <div class="form-group">
-            <button>
-                <img src="https://www.flaticon.com/svg/static/icons/svg/2702/2702602.svg" alt="google" class="mr-3 mt-3 rounded-circle" style="width:20px;" >
-                <a href="/users/auth/google"> Log In With Google</a>
-            </button>
-        </div>
+  <div class="form-group">
+    <button>
+      <img
+        src="https://www.flaticon.com/svg/static/icons/svg/2702/2702602.svg"
+        alt="google"
+        class="mr-3 mt-3 rounded-circle"
+        style="width: 20px"
+      />
+      <a href="/users/auth/google"> Log In With Google</a>
+    </button>
+  </div>
 
-        <div class="form-group">
-            <button type="submit">LOGIN</button>
-        </div>
+  <div class="form-group">
+    <button type="submit">LOGIN</button>
+  </div>
 
-        <div class="form-group">
-            <b>Create an account?</b>
-            <a href="/users/signup">SignUp</a>
-        </div>
-
-        
+  <div class="form-group">
+    <b>Create an account?</b>
+    <a href="/users/signup">SignUp</a>
+  </div>
 </form>
-
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -43,19 +74,19 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
-         //if user want to see password field password
-    var click=false;
-    $('#eye-splash2').on('click',function(){
-        if(!click==true){
-            console.log('click is true')
-            $('#password').attr('type','text');
-            $(this).toggleClass('fa-eye-slash fa-eye')
-            click=true;
-        }else{
-            console.log('click is false')
-            $('#password').attr('type','password');
-            $(this).toggleClass('fa-eye fa-eye-slash')
-            click=false;
-        }
-    })
+  //if user want to see password field password
+  var click = false;
+  $("#eye-splash2").on("click", function () {
+    if (!click == true) {
+      console.log("click is true");
+      $("#password").attr("type", "text");
+      $(this).toggleClass("fa-eye-slash fa-eye");
+      click = true;
+    } else {
+      console.log("click is false");
+      $("#password").attr("type", "password");
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      click = false;
+    }
+  });
 </script>

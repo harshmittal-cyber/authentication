@@ -50,7 +50,10 @@
     background-color: #fffcfc;
     color: green;
     border: 1px solid green;
-    padding: 8px 20px; }
+    padding: 8px 20px;
+    width: 100%;
+    letter-spacing: 1px;
+    border-radius: 5px; }
   .settings .delete-btn {
     background-color: #fffcfc;
     color: red;
@@ -67,7 +70,10 @@
     background-color: #fffcfc;
     color: orange;
     border: 1px solid orange;
-    padding: 10px 20px; }
+    padding: 10px 20px;
+    letter-spacing: 1px;
+    width: 100%;
+    border-radius: 5px; }
 
 @media (max-width: 900px) {
   .settings {
