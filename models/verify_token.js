@@ -1,19 +1,22 @@
-const mongoose=require('mongoose');
+const mongoose = require("mongoose");
 
-const verifySchema = new mongoose.Schema({
-    email:{
-        type:String,
-        required:true
+const verifySchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
     },
 
-    verifytoken:{
-        type:String,
-        required:true
-    }
-},{
-    timestamps:true
-})
+    verifytoken: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const User=mongoose.model('token',verifySchema);
+const User = mongoose.model("token", verifySchema);
 
-module.exports=User
+module.exports = User;

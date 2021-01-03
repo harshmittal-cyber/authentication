@@ -1,0 +1,78 @@
+.settings {
+  display: inline-flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 30px;
+  border-radius: 6px;
+  margin-top: 50px;
+  margin-left: 30px;
+  width: 40%;
+  position: relative; }
+  .settings .image-container {
+    display: flex;
+    margin-bottom: 40px;
+    justify-content: center; }
+    .settings .image-container img {
+      height: 100px;
+      width: 94px;
+      border-radius: 50%; }
+  .settings .field {
+    width: 100%;
+    margin-bottom: 10px; }
+    .settings .field .field-label {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+      color: #9e9e9e;
+      padding: 5px 0; }
+    .settings .field input {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      box-sizing: border-box;
+      border-radius: 6px;
+      width: 100%;
+      height: 40px;
+      padding: 5px;
+      font-size: 15px; }
+  .settings .btn-grp {
+    display: flex;
+    flex-direction: row; }
+  .settings button {
+    border-radius: 6px;
+    width: fit-content;
+    font-size: 16px;
+    border-radius: 3px; }
+  .settings button:hover {
+    cursor: pointer; }
+  .settings button:focus {
+    outline: none; }
+  .settings .save-btn {
+    background-color: #fffcfc;
+    color: green;
+    border: 1px solid green;
+    padding: 8px 20px; }
+  .settings .delete-btn {
+    background-color: #fffcfc;
+    color: red;
+    border: 1px solid red;
+    padding: 10px 20px; }
+  .settings #form {
+    display: none; }
+  .settings .go-back {
+    color: #ef7919;
+    margin-top: 7px;
+    font-size: 13px;
+    cursor: pointer; }
+  .settings #edit-btn {
+    background-color: #fffcfc;
+    color: orange;
+    border: 1px solid orange;
+    padding: 10px 20px; }
+
+@media (max-width: 900px) {
+  .settings {
+    width: 60%; } }
+
+@media (max-width: 600px) {
+  .settings {
+    width: 80%; } }

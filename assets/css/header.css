@@ -1,19 +1,21 @@
 #layout-header {
   position: sticky;
   top: 0;
-  z-index: 999; }
+  z-index: 999;
+  justify-content: space-between; }
   #layout-header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
     height: 50px;
-    background: #fff;
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
     color: white;
     box-shadow: 1px 1px 1px 1px lightgrey; }
     #layout-header nav .main-logo {
       display: flex;
-      align-items: center; }
+      align-items: center;
+      text-transform: uppercase; }
       #layout-header nav .main-logo p {
         margin: 10px;
         font-size: 1.4rem;
@@ -29,6 +31,54 @@
           margin-right: 10px;
           padding: 0 4px; }
     #layout-header nav a {
-      color: #465b70;
+      color: #fff;
       text-decoration: none;
-      letter-spacing: 0.3px; }
+      letter-spacing: 0.1px;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      #layout-header nav a .auth-btn {
+        width: 80px;
+        border: none;
+        border-radius: 100px;
+        color: #fff;
+        padding: 8px 16px;
+        font-size: 13px;
+        box-sizing: border-box;
+        letter-spacing: 0.1px;
+        background-image: linear-gradient(30deg, #fc5656, #ffff51);
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s; }
+    #layout-header nav .user-btn {
+      padding: 0 5px;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer; }
+
+@media (max-width: 500px) {
+  #layout-header nav .main-logo p {
+    margin-left: 2px;
+    font-size: 1.2rem; }
+  #layout-header nav a .auth-btn {
+    width: 65px;
+    padding: 6px 9px;
+    letter-spacing: 0px;
+    font-size: 11px; }
+  #layout-header nav .user-btn {
+    font-size: 11px;
+    padding: 0px; } }
+
+@media (max-width: 350px) {
+  #layout-header nav .main-logo p {
+    margin-left: 2px; }
+  #layout-header nav a .auth-btn {
+    width: 55px;
+    padding: 6px 9px;
+    letter-spacing: 0px;
+    font-size: 7px; }
+  #layout-header nav .user-btn {
+    font-size: 11px;
+    padding: 0px; } }

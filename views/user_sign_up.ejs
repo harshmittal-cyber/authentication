@@ -1,51 +1,92 @@
-<link rel="stylesheet" href="/css/authentication.css">
+<link rel="stylesheet" href="/css/authentication.css" />
 
 <form action="/users/create" method="POST" class="login-form">
-        <h1 style="text-align: center; color: grey">Sign Up</h1>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" placeholder="Your email" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="name">UserName</label>
-            <input type="text" class="form-control" name="name" placeholder="Username" required>
-        </div>
+  <h1 style="text-align: center; color: grey">Sign Up</h1>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      placeholder="Your email"
+      required
+    />
+  </div>
 
-        <div class="form-group" id="font-awesome" style="position: relative;">
-            <label for="password">Password<small>(8 or more character)</small></label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Your password" required>
-            <i class="fas fa-eye-slash" style="position: absolute; left:92%; top: 35px; cursor: pointer;" id="eye-splash"></i>
-            <div id="message" style="display: none; font-size: 12.5px; color: #397199;">
-                <small>Password must contain special character,UpperCase,lowercase,a number</small>
-            </div>
-        </div>
+  <div class="form-group">
+    <label for="name">UserName</label>
+    <input
+      type="text"
+      class="form-control"
+      name="name"
+      placeholder="Username"
+      required
+    />
+  </div>
 
-        <div class="form-group" style="position: relative;">
-            <label for="confirm_password">Confirm Password</label>
-            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
-            <i class="fas fa-eye-slash" style="position: absolute; left:92%; top: 35px; cursor: pointer;" id="eye-splash1"></i>
-        </div>
-        
-        <div class="form-group">
-            <button>
-                <a href="/users/auth/google"> 
-                <img src="https://www.flaticon.com/svg/static/icons/svg/2702/2702602.svg" alt="google" class="mr-3 mt-3 rounded-circle" style="width:20px;" >
-                 Sign Up With Google </a>
-            </button>        
-        </div>
-        
-        <div class="form-group">
-            <button type="submit">SignUp</button>
-        </div>
+  <div class="form-group" id="font-awesome" style="position: relative">
+    <label for="password">Password<small>(8 or more character)</small></label>
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      id="password"
+      placeholder="Your password"
+      required
+    />
+    <i
+      class="fas fa-eye-slash"
+      style="position: absolute; left: 92%; top: 35px; cursor: pointer"
+      id="eye-splash"
+    ></i>
+    <div id="message" style="display: none; font-size: 12.5px; color: #397199">
+      <small
+        >Password must contain special character,UpperCase,lowercase,a
+        number</small
+      >
+    </div>
+  </div>
 
-        <div class="form-group">
-            <b>Already Have an account?</b>
-            <a href="/users/signin">Login</a>
-        </div>
-        
+  <div class="form-group" style="position: relative">
+    <label for="confirm_password">Confirm Password</label>
+    <input
+      type="password"
+      class="form-control"
+      name="confirm_password"
+      id="confirm_password"
+      placeholder="Confirm Password"
+      required
+    />
+    <i
+      class="fas fa-eye-slash"
+      style="position: absolute; left: 92%; top: 35px; cursor: pointer"
+      id="eye-splash1"
+    ></i>
+  </div>
+
+  <div class="form-group">
+    <button>
+      <a href="/users/auth/google">
+        <img
+          src="https://www.flaticon.com/svg/static/icons/svg/2702/2702602.svg"
+          alt="google"
+          class="mr-3 mt-3 rounded-circle"
+          style="width: 20px"
+        />
+        Sign Up With Google
+      </a>
+    </button>
+  </div>
+
+  <div class="form-group">
+    <button type="submit">SignUp</button>
+  </div>
+
+  <div class="form-group">
+    <b>Already Have an account?</b>
+    <a href="/users/signin">Login</a>
+  </div>
 </form>
-
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -53,42 +94,41 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
-//    //if user focus on password input field then it show message
-    $('#password').on('focus',function(){
-        $('#message').css('display','block');
-    })
+  //    //if user focus on password input field then it show message
+  $("#password").on("focus", function () {
+    $("#message").css("display", "block");
+  });
 
-    //if user click outside password input tag then message disappear
-    $('#password').on('blur',function(){
-        $('#message').css('display','none')
-    })
+  //if user click outside password input tag then message disappear
+  $("#password").on("blur", function () {
+    $("#message").css("display", "none");
+  });
 
-    var click=false;
-    //if user want to see password 
-    $('#eye-splash').on('click',function(){
-        if(!click==true){
-            $('#password').attr('type','text');
-            $(this).toggleClass('fa-eye-slash fa-eye')
-            click=true;
-        }else{
-            $('#password').attr('type','password');
-            $(this).toggleClass('fa-eye fa-eye-slash')
-            click=false;
-        }
-    })
+  var click = false;
+  //if user want to see password
+  $("#eye-splash").on("click", function () {
+    if (!click == true) {
+      $("#password").attr("type", "text");
+      $(this).toggleClass("fa-eye-slash fa-eye");
+      click = true;
+    } else {
+      $("#password").attr("type", "password");
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      click = false;
+    }
+  });
 
-
-    //if user want to see confirm password field password
-    var click1=false;
-    $('#eye-splash1').on('click',function(){
-        if(!click1==true){
-            $('#confirm_password').attr('type','text');
-            $(this).toggleClass('fa-eye-slash fa-eye')
-            click1=true;
-        }else{
-            $('#confirm_password').attr('type','password');
-            $(this).toggleClass('fa-eye fa-eye-slash')
-            click1=false;
-        }
-    })
-</script> 
+  //if user want to see confirm password field password
+  var click1 = false;
+  $("#eye-splash1").on("click", function () {
+    if (!click1 == true) {
+      $("#confirm_password").attr("type", "text");
+      $(this).toggleClass("fa-eye-slash fa-eye");
+      click1 = true;
+    } else {
+      $("#confirm_password").attr("type", "password");
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      click1 = false;
+    }
+  });
+</script>

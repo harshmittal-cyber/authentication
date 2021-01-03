@@ -12,11 +12,16 @@
         <% if (locals.user) { %>
         <li>
           <!-- when we click on name it redirect to user profile page -->
-          <a href="/users/profile/:id"><%= user.name %></a>
+          <a href="/users/profile/:id" style="font-size: 16px"
+            ><div class="user-btn"><%= user.name %></div></a
+          >
         </li>
         <li>
-          <a href="/users/destroysession">Sign Out</a>
+          <a href="/users/destroysession">
+            <button class="auth-btn">SignOut</button>
+          </a>
         </li>
+
         <img
           src="<%= user.avatar %>"
           alt="<%= user.name %>"
@@ -31,14 +36,17 @@
             box-sizing: border-box;
           "
         />
-
         <% }else{ %>
         <li>
-          <a href="/users/signup">Sign Up</a>
+          <a href="/users/signup">
+            <button class="auth-btn">Sign Up</button>
+          </a>
         </li>
 
         <li>
-          <a href="/users/signin">Sign In</a>
+          <a href="/users/signin">
+            <button class="auth-btn">Login</button>
+          </a>
         </li>
 
         <% } %>

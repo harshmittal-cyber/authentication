@@ -1,47 +1,85 @@
 <link rel="shortcut icon" href="/images/profile1.jpg" type="image/x-icon" />
-
-<img src="<%=user.avatar%>" alt="<%=user.name%>" width="100px" height="100px" />
+<link rel="stylesheet" href="/css/profile.css" />
+<script src="/assets/js/profile.js"></script>
 
 <% if(locals.user){%>
-<h1>Profile</h1>
-<p><%=user.email%></p>
-<p><%=user.name%></p>
-<br /><br />
-<form
-  action="/users/update/<%=user.id%>"
-  method="POST"
-  enctype="multipart/form-data"
->
-  <div class="form-group">
-    <input type="email" name="email" value="<%=user.email%>" />
-  </div>
-  <div class="form-group">
-    <input type="text" name="name" value="<%=user.name%>" />
+<div class="settings">
+  <div class="image-container">
+    <img src="<%=user.avatar%>" alt="<%=user.name%>" />
   </div>
 
-  <div class="form-group">
-    <input type="file" name="avatar" />
+  <!-- account or profile -->
+  <div id="account">
+    <div class="field">
+      <div class="field-label">Name</div>
+      <div class="field-label"><%=user.name%></div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Email</div>
+      <div class="field-label"><%=user.email%></div>
+    </div>
+    <div class="btn-grp">
+      <button id="edit-btn">Edit Profile</button>
+    </div>
   </div>
-  <div class="form-group">
-    <button class="btn btn-success" style="border-radius: 20px">Submit</button>
+
+  <!-- Edit profile form -->
+  <div id="form">
+    <form
+      action="/users/update/<%=user.id%>"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <div class="field">
+        <div class="field-label">Name</div>
+        <input type="text" name="name" value="<%=user.name%>" />
+      </div>
+      <div class="field">
+        <div class="field-label">Email</div>
+        <input type="email" name="email" value="<%=user.email%>" />
+      </div>
+
+      <div class="field">
+        <div class="field-label">
+          <label for="image" style="cursor: pointer">Choose Image</label>
+        </div>
+        <input type="file" name="avatar" id="image" style="display: none" />
+      </div>
+
+      <div class="btn-grp">
+        <button class="save-btn">Save</button>
+      </div>
+    </form>
+
+    <!-- Delete account button -->
+    <!-- <div class="form-group">
+      <a href="/users/destroy/<%=user.id%>">
+        <button class="delete-btn">Delete Account</button>
+      </a>
+    </div> -->
+
+    <!-- button for hiding edit form -->
+    <div class="go-back" id="go">Go Back</div>
   </div>
-</form>
-<div class="form-group">
-  <a href="/users/destroysession">
-    <button type="button" class="btn btn-success" style="border-radius: 20px">
-      SignOut
-    </button>
-  </a>
-</div>
-<div class="form-group">
-  <a href="/users/destroy/<%=user.id%>">
-    <button type="button" class="btn btn-danger" style="border-radius: 20px">
-      Delete Account
-    </button>
-  </a>
 </div>
 
 <% }else{%>
 <p><a href="/users/signin">SignIn</a></p>
 <p><a href="/users/signup">SignUp</a></p>
 <% } %>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  $("#edit-btn").on("click", function () {
+    $("#account").hide();
+    $("#form").show();
+  });
+
+  $("#go").on("click", function () {
+    $("#account").show();
+    $("#form").hide();
+  });
+</script>
