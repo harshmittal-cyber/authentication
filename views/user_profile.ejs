@@ -1,7 +1,5 @@
-<link rel="shortcut icon" href="/images/profile1.jpg" type="image/x-icon" />
 <link rel="stylesheet" href="/css/profile.css" />
-
-<% if(locals.user){%>
+<%-include('_header');%> <% if(locals.user){%>
 <div class="settings">
   <div class="image-container">
     <img src="<%=user.avatar%>" alt="<%=user.name%>" id="img" />
