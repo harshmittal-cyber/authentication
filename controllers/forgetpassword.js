@@ -2,6 +2,7 @@ const User = require("../models/user");
 const token = require("../models/token");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
+const env = require("../config/environment");
 //for rendering user email confirmation for resetting the password
 module.exports.forgetpassword = function (req, res) {
   return res.render("forget_password", {
@@ -20,7 +21,7 @@ module.exports.forget = function (req, res) {
     }
 
     if (user) {
-      let randomtoken = jwt.sign(user.toJSON(), "authentication", {
+      let randomtoken = jwt.sign(user.toJSON(), env.jwt_secret, {
         expiresIn: "600000",
       });
       //creating token in database
@@ -29,14 +30,7 @@ module.exports.forget = function (req, res) {
         email: req.body.email,
       });
       //sending mails via nodemailer
-      let transporter = nodemailer.createTransport({
-        service: "gmail",
-        port: 587,
-        auth: {
-          user: "mittalh310@gmail.com",
-          pass: "$Abc1234",
-        },
-      });
+      let transporter = nodemailer.createTransport(env.smtp);
 
       let mailOptions = {
         from: "mittalh310@gmail.com",

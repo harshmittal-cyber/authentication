@@ -4,7 +4,7 @@ module.exports.signin = function (req, res) {
     return res.redirect("/");
   }
   return res.render("user_sign_in", {
-    title: "SignIn",
+    title: "Authentication || SignIn",
   });
 };
 

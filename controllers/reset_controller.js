@@ -46,7 +46,7 @@ module.exports.resetpassword = function (req, res) {
             bcrypt.hash(req.body.reset_password, 10, function (err, hash) {
               User.findByIdAndUpdate(
                 user._id,
-                { password: hash, google: false },
+                { password: hash, google: true },
                 function (err, user) {
                   console.log("Password changed");
                 }

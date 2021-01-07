@@ -2,9 +2,10 @@
 <header id="layout-header">
   <nav>
     <div class="main-logo">
-      <p>
-        <a href="/"> authentication </a>
-      </p>
+      <a href="/">
+        <img src="https://img.icons8.com/dusk/30/000000/checked--v1.png" />
+        <p>authentication</p>
+      </a>
     </div>
 
     <div class="auth-links">
@@ -21,21 +22,22 @@
             <button class="auth-btn">SignOut</button>
           </a>
         </li>
-
-        <img
-          src="<%= user.avatar %>"
-          alt="<%= user.name %>"
-          width="30"
-          height="30"
-          style="
-            border-radius: 50px;
-            border: none;
-            position: relative;
-            top: -1px;
-            object-fit: cover;
-            box-sizing: border-box;
-          "
-        />
+        <a href="/users/profile/:id">
+          <img
+            src="<%= user.avatar %>"
+            alt="<%= user.name %>"
+            width="30"
+            height="30"
+            style="
+              border-radius: 50px;
+              border: none;
+              position: relative;
+              top: -1px;
+              object-fit: cover;
+              box-sizing: border-box;
+            "
+          />
+        </a>
         <% }else{ %>
         <li>
           <a href="/users/signup">
