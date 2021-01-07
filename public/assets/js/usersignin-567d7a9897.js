@@ -1,0 +1,1 @@
+{var click=!1;function eyesplash(){1==!click?($("#password").attr("type","text"),$("#eye-splash2").toggleClass("fa-eye-slash fa-eye"),click=!0):($("#password").attr("type","password"),$("#eye-splash2").toggleClass("fa-eye fa-eye-slash"),click=!1)}}

@@ -6,3 +6,7 @@
 [0mGET /users/signin [36m304[0m 10.930 ms - -[0m
 [0mGET /users/signup [36m304[0m 13.244 ms - -[0m
 [0mGET /users/signin [36m304[0m 9.978 ms - -[0m
+[0mGET / [36m304[0m 41.712 ms - -[0m
+[0mGET / [36m304[0m 18.208 ms - -[0m
+[0mGET / [36m304[0m 19.681 ms - -[0m
+[0mGET /users/signin [36m304[0m 17.179 ms - -[0m
