@@ -1,0 +1,58 @@
+.login-form {
+  position: static;
+  width: 30%;
+  margin: auto;
+  margin-top: 70px;
+  padding: 10px 25px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px 0px 10px 0px;
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }
+  .login-form label {
+    font-weight: 450; }
+  .login-form input:focus {
+    outline: none; }
+  .login-form h1 {
+    text-align: center;
+    color: grey;
+    font-size: 30px; }
+  .login-form button {
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    padding: 6px;
+    font-size: 20px;
+    letter-spacing: 0.1rem;
+    background-image: linear-gradient(to right, #fff, #e3e2e2);
+    border: 1px solid lightgray;
+    text-decoration: none;
+    color: grey;
+    outline: none; }
+    .login-form button a {
+      text-decoration: none;
+      color: grey; }
+
+@media (max-width: 1130px) {
+  .login-form {
+    width: 40%; } }
+
+@media (max-width: 900px) {
+  .login-form {
+    width: 60%; }
+    .login-form button {
+      letter-spacing: 0.1rem;
+      font-size: 16px; } }
+
+@media (max-width: 700px) {
+  .login-form {
+    width: 70%; }
+    .login-form button {
+      font-size: 14px; } }
+
+@media (max-width: 500px) {
+  .login-form {
+    width: 80%; }
+    .login-form h1 {
+      font-size: 18px; }
+    .login-form button {
+      font-size: 12px; } }
