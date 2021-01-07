@@ -2,6 +2,7 @@ const express = require("express");
 const env = require("./config/environment");
 const app = express();
 const port = 1000;
+const logger = require("morgan");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const expressLayouts = require("express-ejs-layouts");
@@ -18,6 +19,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 const customMware = require("./config/middleware");
+const { getLogger } = require("nodemailer/lib/shared");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -29,7 +31,7 @@ if (env.name == "development") {
     sassMiddleware({
       src: path.join(__dirname, env.asset_path, "scss"),
       dest: path.join(__dirname, env.asset_path, "css"),
-      debug: true,
+      debug: false,
       outputStyle: "extended",
       prefix: "/css",
     })
@@ -39,6 +41,10 @@ if (env.name == "development") {
 //for layouts
 app.use(express.static(env.asset_path));
 app.use("/uploads", express.static(__dirname + "/uploads"));
+
+//logger
+app.use(logger(env.morgan.mode, env.morgan.options));
+
 app.use(expressLayouts);
 
 //extract the styles
