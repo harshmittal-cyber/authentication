@@ -1,13 +1,23 @@
 <%-include('_header');%>
 
-<h1>Cool You are on home page</h1>
-
-<ul>
+<ul style="list-style: none">
   <% if(locals.user){%>
-  <li><a href="/users/profile/<%=user.id%>"><%= user.name %></a></li>
+  <h1>Visit Your Profile</h1>
+  <li>
+    <a href="/users/profile/<%=user.id%>"><%= user.name %></a>
+  </li>
   <li><a href="/users/destroysession">SignOut</a></li>
   <% } else{ %>
-  <li><a href="/users/signin">SignIn</a></li>
-  <li><a href="/users/signup">SignUp</a></li>
+  <div class="list" style="margin-left: 40%; margin-top: 10%">
+    <li>
+      <a href="/users/signin" class="btn btn-success">SignIn</a>
+    </li>
+    <li>
+      <a href="/users/signup" class="btn btn-success" style="margin-top: 10px"
+        >SignUp</a
+      >
+    </li>
+  </div>
   <% } %>
 </ul>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

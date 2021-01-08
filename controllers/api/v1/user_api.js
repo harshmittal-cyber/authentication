@@ -26,7 +26,7 @@ module.exports.createSession = async function (req, res) {
         });
       } else {
         return res.status(200).json({
-          message: "Sign In successfully",
+          message: user,
           data: jwt.sign(user.toJSON(), env.jwt_secret, {
             expiresIn: "600000",
           }),
