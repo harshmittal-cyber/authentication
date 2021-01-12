@@ -38,6 +38,7 @@
     "nodemon": "^2.0.6",
     "noty": "^3.2.0-beta",
     "passport": "^0.4.1",
+    "passport-2fa-totp": "0.0.1",
     "passport-google-oauth": "^2.0.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",

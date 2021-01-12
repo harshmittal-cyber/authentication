@@ -25,9 +25,10 @@ const development = {
   },
   google_client_id:
     "882676543438-9edmntqfbmruugl8m5fg85i7m6h4lu0k.apps.googleusercontent.com",
-  google_client_secret: "6tkgXj5RDmhrkKmkDA8o6q8U",
+  google_client_secret: "Rfh-8OEzfLK0Vo3lQJW42PrF",
   google_call_back_url: "http://localhost:1000/users/auth/google/callback",
   jwt_secret: "authentication",
+  google_password: "$Dca1567",
   morgan: {
     mode: "dev",
     options: { stream: accessLogStream },

@@ -24,15 +24,16 @@ passport.use(
 
         //if user is find then return the user
         if (user) {
+          console.log(profile);
           return done(null, user);
         } else {
           //if user is not in database the create the user and return the user
           User.create(
             {
-              name: "Name",
+              name: profile.displayName,
               email: profile.emails[0].value,
-              password: "$Dca1567", //for validation of password
-              verified: true,
+              password: env.google_password, //for validation of password
+              verified: profile.emails[0].verified,
               google: true,
             },
             function (err, user) {
