@@ -11,7 +11,11 @@ router.get(
   passport.checkAuthentication,
   user_controller.profile
 );
-router.post("/update/:id", user_controller.update);
+router.post(
+  "/update/:id",
+  passport.checkAuthentication,
+  user_controller.update
+);
 
 //delete the account
 router.get(

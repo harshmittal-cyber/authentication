@@ -2,7 +2,7 @@ const express = require("express");
 const env = require("./config/environment");
 const app = express();
 require("./config/view-helper")(app);
-const port = process.env.PORT;
+const port = 2000;
 const logger = require("morgan");
 
 const path = require("path");

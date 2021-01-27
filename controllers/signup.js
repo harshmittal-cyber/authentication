@@ -80,7 +80,7 @@ module.exports.create = function (req, res) {
         to: req.body.email,
         subject: "Verification Email",
         text:
-          'Verify Your Email By clicking on Link: " <a href="http://localhost:1000/verify/?token=' +
+          'Verify Your Email By clicking on Link: " <a href="http://localhost:2000/verify/?token=' +
           randomtoken +
           '">"Verify</a>',
       };

@@ -37,7 +37,7 @@ module.exports.forget = function (req, res) {
         to: req.body.email,
         subject: "Reset Password Email",
         text:
-          "Reset Your password by clicking on link below \n \n  http://localhost:1000/reset/?token=" +
+          "Reset Your password by clicking on link below \n \n  http://localhost:2000/reset/?token=" +
           randomtoken +
           "\n \nThis link is valid for only 10 min.\n Thanks \n Team Authentication",
       };

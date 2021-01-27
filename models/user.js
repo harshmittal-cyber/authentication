@@ -21,9 +21,6 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String,
     },
-    image: {
-      type: String,
-    },
     //for google verification
     google: {
       type: Boolean,
