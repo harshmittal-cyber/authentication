@@ -8,6 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod_start": "NODE_ENV=production & nodemon index.js"
   },
+  "keywords": [
+    "authentication system",
+    "authentication",
+    "auth"
+  ],
   "author": "Harsh Mittal",
   "license": "ISC",
   "dependencies": {

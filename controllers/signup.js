@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const random = require("randomstring");
 const token = require("../models/verify_token");
 const nodemailer = require("nodemailer");
-const env = require("../config/environment");
 //signup handler
 module.exports.signup = function (req, res) {
   if (req.isAuthenticated()) {
@@ -73,7 +72,14 @@ module.exports.create = function (req, res) {
         email: req.body.email,
       });
       //sending mails via nodemailer
-      let transporter = nodemailer.createTransport(env.smtp);
+      let transporter = nodemailer.createTransport({
+        service: "gmail",
+        port: 587,
+        auth: {
+          user: "mittalh310@gmail.com",
+          pass: "erauth8492",
+        },
+      });
 
       let mailOptions = {
         from: "mittalh310@gmail.com",
