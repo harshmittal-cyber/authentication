@@ -51,7 +51,8 @@
     "passport-one-session-per-user": "^1.0.3",
     "path": "^0.12.7",
     "randomstring": "^1.1.5",
-    "rotating-file-stream": "^2.1.5"
+    "rotating-file-stream": "^2.1.5",
+    "gulp": "^4.0.2"
   },
   "devDependencies": {
     "gulp": "^4.0.2"
