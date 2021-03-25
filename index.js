@@ -92,9 +92,9 @@ app.use(customMware.setFlash);
 
 app.use("/", require("./routes/index"));
 
-app.listen(process.env.port || 3000, function (err) {
+app.listen(port, function (err) {
   if (err) {
     console.log("ERROR in running a server");
   }
-  console.log("Server is running on port", process.env.port);
+  console.log("Server is running on port", port);
 });
