@@ -4,6 +4,7 @@ const app = express();
 require("./config/view-helper")(app);
 const port = process.env.port || 3000;
 const logger = require("morgan");
+const bodyParser = require("body-parser");
 
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -24,7 +25,8 @@ const customMware = require("./config/middleware");
 const { getLogger } = require("nodemailer/lib/shared");
 
 app.use(express.urlencoded({ extended: true }));
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 //for cookies
 app.use(cookieParser());
 
