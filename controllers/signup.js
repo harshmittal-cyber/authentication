@@ -77,13 +77,13 @@ module.exports.create = function (req, res) {
         service: "gmail",
         port: 587,
         auth: {
-          user: env.auth.user,
-          pass: env.auth.pass,
+          user: "mittalh310@gmail.com",
+          pass: "erauth8492",
         },
       });
 
       let mailOptions = {
-        from: env.auth.user,
+        from: "mittalh310@gmail.com",
         to: req.body.email,
         subject: "Verification Email",
         text:
