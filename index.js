@@ -28,17 +28,17 @@ app.use(express.urlencoded({ extended: true }));
 //for cookies
 app.use(cookieParser());
 
-if (env.name == "development") {
-  app.use(
-    sassMiddleware({
-      src: path.join(__dirname, env.asset_path, "scss"),
-      dest: path.join(__dirname, env.asset_path, "css"),
-      debug: false,
-      outputStyle: "extended",
-      prefix: "/css",
-    })
-  );
-}
+// if (env.name == "development") {
+app.use(
+  sassMiddleware({
+    src: path.join(__dirname, env.asset_path, "scss"),
+    dest: path.join(__dirname, env.asset_path, "css"),
+    debug: false,
+    outputStyle: "extended",
+    prefix: "/css",
+  })
+);
+// }
 
 //for layouts
 app.use(express.static(env.asset_path));

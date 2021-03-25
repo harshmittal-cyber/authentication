@@ -16,26 +16,30 @@ module.exports.createSession = async function (req, res) {
       });
     }
 
-    bcrypt.compare(req.body.password, user.password, function (err, result) {
-      if (err) {
-        console.log("error", err);
-        return res.status(400).json({
-          message: "Bad Request Check your Internet Connection",
-        });
+    await bcrypt.compare(
+      req.body.password,
+      user.password,
+      function (err, result) {
+        if (err) {
+          console.log("error", err);
+          return res.status(400).json({
+            message: "Bad Request Check your Internet Connection",
+          });
+        }
+        if (!result) {
+          return res.status(422).json({
+            message: "Invalid Username or Password",
+          });
+        } else {
+          return res.status(200).json({
+            message: user,
+            data: jwt.sign(user.toJSON(), env.jwt_secret, {
+              expiresIn: "600000",
+            }),
+          });
+        }
       }
-      if (!result) {
-        return res.status(422).json({
-          message: "Invalid Username or Password",
-        });
-      } else {
-        return res.status(200).json({
-          message: user,
-          data: jwt.sign(user.toJSON(), env.jwt_secret, {
-            expiresIn: "600000",
-          }),
-        });
-      }
-    });
+    );
   } catch (err) {
     console.log("error", err);
     return (
