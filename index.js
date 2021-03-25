@@ -2,7 +2,7 @@ const express = require("express");
 const env = require("./config/environment");
 const app = express();
 require("./config/view-helper")(app);
-const port = process.env.port || "3000";
+const port = process.env.port || 3000;
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 
@@ -96,5 +96,5 @@ app.listen(port, function (err) {
   if (err) {
     console.log("ERROR in running a server");
   }
-  console.log("Server is running on port", port);
+  console.log(`Server is running on port ${port}`);
 });
