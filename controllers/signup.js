@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const random = require("randomstring");
 const token = require("../models/verify_token");
 const nodemailer = require("nodemailer");
+const env = require("../config/environment");
 //signup handler
 module.exports.signup = function (req, res) {
   if (req.isAuthenticated()) {
@@ -76,13 +77,13 @@ module.exports.create = function (req, res) {
         service: "gmail",
         port: 587,
         auth: {
-          user: "mittalh310@gmail.com",
-          pass: "erauth8492",
+          user: env.auth.user,
+          pass: env.auth.pass,
         },
       });
 
       let mailOptions = {
-        from: "mittalh310@gmail.com",
+        from: env.auth.user,
         to: req.body.email,
         subject: "Verification Email",
         text:

@@ -19,7 +19,7 @@ const development = {
     port: 587,
     auth: {
       user: "mittalh310@gmail.com",
-      pass: "$Abc1234",
+      pass: "erauth8492",
     },
   },
   google_client_id:
