@@ -91,12 +91,12 @@ module.exports.create = async function (req, res) {
           to: [{ email: email }],
           replyTo: { email: "mittalharsh4321@gmail.com" },
           params: {
-            link: "http://localhost:1000/verify/?token=" + randomtoken,
+            link: "http://auth-team.herokuapp.com/verify/?token=" + randomtoken,
           },
           // templateId:2
           subject: "Verify Email",
           htmlContent:
-            'Verify Your Email By clicking on Link: " <a href="http://localhost:2000/verify/?token=' +
+            'Verify Your Email By clicking on Link: " <a href="http://auth-team.herokuapp.com/verify/?token=' +
             randomtoken +
             '">"Verify</a>',
         },
