@@ -4,6 +4,7 @@ const random = require("randomstring");
 const token = require("../models/verify_token");
 const nodemailer = require("nodemailer");
 const env = require("../config/environment");
+const request = require("request");
 //signup handler
 module.exports.signup = function (req, res) {
   if (req.isAuthenticated()) {
@@ -25,82 +26,95 @@ function validatePassword(password) {
   return re.test(password);
 }
 
-module.exports.create = function (req, res) {
-  const email = req.body.email;
+module.exports.create = async function (req, res) {
+  try {
+    const email = req.body.email;
 
-  //checking if email is valid or not
-  if (!validateEmail(email)) {
-    req.flash("error", "Enter a valid email");
-    return res.redirect("back");
-  }
-  //if password not matches with confirm password
-  if (req.body.password != req.body.confirm_password) {
-    req.flash("error", "Password Not matched");
-    return res.redirect("back");
-  }
-
-  const password = req.body.password;
-  //checking if password satisfy the secure password condition or not
-  if (!validatePassword(password)) {
-    req.flash("error", "Enter a valid password");
-    return res.redirect("back");
-  }
-
-  User.findOne({ email: req.body.email }, function (err, user) {
-    if (err) {
-      console.log("Error in finding a user");
-      return;
+    //checking if email is valid or not
+    if (!validateEmail(email)) {
+      req.flash("error", "Enter a valid email");
+      return res.redirect("back");
     }
+    //if password not matches with confirm password
+    if (req.body.password != req.body.confirm_password) {
+      req.flash("error", "Password Not matched");
+      return res.redirect("back");
+    }
+
+    const password = req.body.password;
+    //checking if password satisfy the secure password condition or not
+    if (!validatePassword(password)) {
+      req.flash("error", "Enter a valid password");
+      return res.redirect("back");
+    }
+
+    let user = await User.findOne({ email: req.body.email });
+
     if (user) {
       req.flash("error", "User already Exist");
       return res.redirect("/users/signup");
     }
+
     if (!user) {
-      bcrypt.hash(req.body.password, 10, function (err, hash) {
-        User.create({
-          email: req.body.email,
-          password: hash,
-          name: req.body.name,
-          verified: false,
-        });
+      let hash = await bcrypt.hash(req.body.password, 10);
+
+      await User.create({
+        email: req.body.email,
+        password: hash,
+        name: req.body.name,
+        verified: false,
       });
       //token generation
-      let randomtoken = random.generate();
+      let randomtoken = await random.generate();
 
       //creating token in database
-      token.create({
+      await token.create({
         verifytoken: randomtoken,
         email: req.body.email,
       });
-      //sending mails via nodemailer
-      let transporter = nodemailer.createTransport({
-        service: "gmail",
-        port: 587,
-        auth: {
-          user: "mittalh310@gmail.com",
-          pass: "erauth8492",
+      //sending email via sendinblue api
+      let sendSMTPEmail = {
+        method: "POST",
+        Port: 587,
+        url: "https://api.sendinblue.com/v3/smtp/email",
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          "api-key":
+            "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",
         },
-      });
-
-      let mailOptions = {
-        from: "mittalh310@gmail.com",
-        to: req.body.email,
-        subject: "Verification Email",
-        text:
-          'Verify Your Email By clicking on Link: " <a href="http://localhost:2000/verify/?token=' +
-          randomtoken +
-          '">"Verify</a>',
+        body: {
+          sender: {
+            name: "Team Authentication",
+            email: "mittalharsh4321@gmail.com",
+          },
+          to: [{ email: email }],
+          replyTo: { email: "mittalharsh4321@gmail.com" },
+          params: {
+            link: "http://localhost:1000/verify/?token=" + randomtoken,
+          },
+          // templateId:2
+          subject: "Verify Email",
+          htmlContent:
+            'Verify Your Email By clicking on Link: " <a href="http://localhost:2000/verify/?token=' +
+            randomtoken +
+            '">"Verify</a>',
+        },
+        json: true,
       };
-
-      transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Email sent: " + info.response);
+      request(sendSMTPEmail, function (err, response, body) {
+        if (err) {
+          console.log("error", err);
         }
+        console.log(body);
       });
+
       req.flash("success", "Verification Mail sent to your Email ");
       return res.redirect("/users/signin");
     }
-  });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
 };

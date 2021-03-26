@@ -4,13 +4,10 @@ const bcrypt = require("bcrypt");
 const duration = 600000; //only for 10mins
 
 //to show the form for resetting password if link is not expired
-module.exports.reset = function (req, res) {
-  token.findOne({ token: req.query.token }, function (err, tokenf) {
-    if (err) {
-      console.log("error", err);
-    }
+module.exports.reset = async function (req, res) {
+  try {
+    let tokenf = await token.findOne({ token: req.query.token });
 
-    //if token isvalid the show the reset pasword form
     if (tokenf && Date.now() - tokenf.created < duration) {
       res.render("reset_form", {
         title: "Reset Password",
@@ -19,11 +16,15 @@ module.exports.reset = function (req, res) {
       });
     } else {
       //if token is expired the delete the token from database
-      token.findByIdAndDelete(tokenf._id, function (err, token) {});
+      await token.findByIdAndDelete(tokenf._id);
       req.flash("error", "Link was expired or invalid");
       return res.redirect("/");
     }
-  });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
 };
 
 //for updating or resettting the password
