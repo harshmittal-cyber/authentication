@@ -3,6 +3,7 @@ const token = require("../models/token");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const env = require("../config/environment");
+const request = require("request");
 //for rendering user email confirmation for resetting the password
 module.exports.forgetpassword = function (req, res) {
   return res.render("forget_password", {
@@ -11,6 +12,7 @@ module.exports.forgetpassword = function (req, res) {
 };
 
 module.exports.forget = function (req, res) {
+  const email = req.body.email;
   User.findOne({ email: req.body.email }, function (err, user) {
     if (err) {
       console.log("Error in finding the user", err);
@@ -29,26 +31,44 @@ module.exports.forget = function (req, res) {
         token: randomtoken,
         email: req.body.email,
       });
-      //sending mails via nodemailer
-      let transporter = nodemailer.createTransport(env.smtp);
+      //sending email via sendinblue api
+      let sendSMTPEmail = {
+        method: "POST",
+        Port: 587,
+        url: "https://api.sendinblue.com/v3/smtp/email",
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          "api-key":
+            "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",
+        },
+        body: {
+          sender: {
+            name: "Team Authentication",
+            email: "mittalharsh4321@gmail.com",
+          },
+          to: [{ email: email }],
+          replyTo: { email: "mittalharsh4321@gmail.com" },
+          params: {
+            link: "http://localhost:1000/verify/?token=" + randomtoken,
+          },
+          // templateId:2
+          subject: "Verify Email",
 
-      let mailOptions = {
-        from: "mittalh310@gmail.com",
-        to: req.body.email,
-        subject: "Reset Password Email",
-        text:
-          "Reset Your password by clicking on link below \n \n  http://localhost:2000/reset/?token=" +
-          randomtoken +
-          "\n \nThis link is valid for only 10 min.\n Thanks \n Team Authentication",
+          htmlContent:
+            'Reset your password By clicking on Link: " <a href="http://localhost:2000/reset/?token=' +
+            randomtoken +
+            '">"Verify</a> /n This lInk is valid for only 10',
+        },
+        json: true,
       };
-
-      transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Email sent: " + info.response);
+      request(sendSMTPEmail, function (err, response, body) {
+        if (err) {
+          console.log("error", err);
         }
+        console.log(body);
       });
+
       req.flash("success", "Link has been sent to your email");
       return res.redirect("back");
     }
