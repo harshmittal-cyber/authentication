@@ -50,15 +50,15 @@ module.exports.forget = function (req, res) {
           to: [{ email: email }],
           replyTo: { email: "mittalharsh4321@gmail.com" },
           params: {
-            link: "http://localhost:1000/verify/?token=" + randomtoken,
+            link: "http://auth-team.herokuapp.com/verify/?token=" + randomtoken,
           },
           // templateId:2
           subject: "Verify Email",
 
           htmlContent:
-            'Reset your password By clicking on Link: " <a href="http://localhost:2000/reset/?token=' +
+            'Reset your password By clicking on Link: " <a href="http://auth-team.herokuapp.com/reset/?token=' +
             randomtoken +
-            '">"Verify</a> /n This lInk is valid for only 10',
+            '">"Reset your password</a>. This lInk is valid for only 10 minutes',
         },
         json: true,
       };

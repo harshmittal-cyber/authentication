@@ -938,3 +938,8 @@
 [0mGET / [32m200[0m 456.222 ms - 2133[0m
 [0mGET /users/signin [36m302[0m 559.834 ms - 46[0m
 [0mGET / [32m200[0m 553.390 ms - 2799[0m
+[0mGET / [32m200[0m 2997.181 ms - 2525[0m
+[0mGET /users/destroysession [36m302[0m 559.354 ms - 46[0m
+[0mGET / [32m200[0m 289.567 ms - 2408[0m
+[0mGET /users/signin [32m200[0m 299.720 ms - 3834[0m
+[0mGET /forgetpassword [32m200[0m 328.973 ms - 2443[0m
