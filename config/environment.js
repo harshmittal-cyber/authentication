@@ -24,8 +24,9 @@ const development = {
   },
   google_client_id:
     "882676543438-9edmntqfbmruugl8m5fg85i7m6h4lu0k.apps.googleusercontent.com",
-  google_client_secret: "AIzaSyDDGDBDa3FKgNkD6GTfmGdDrZO9zAmFC3M",
-  google_call_back_url: "http://localhost:1000/users/auth/google/callback",
+  google_client_secret: "erENaj00H80ZYwMlSzFFaBMN",
+  google_call_back_url:
+    "http://auth-team.herokuapp.com/users/auth/google/callback",
   jwt_secret: "authentication",
   google_password: "$Dca4321",
   morgan: {

@@ -943,3 +943,11 @@
 [0mGET / [32m200[0m 289.567 ms - 2408[0m
 [0mGET /users/signin [32m200[0m 299.720 ms - 3834[0m
 [0mGET /forgetpassword [32m200[0m 328.973 ms - 2443[0m
+[0mGET / [32m200[0m 336.041 ms - 2133[0m
+[0mGET /users/signup [36m304[0m 405.901 ms - -[0m
+[0mGET / [32m200[0m 39.075 ms - 2133[0m
+[0mGET /users/signup [32m200[0m 560.668 ms - 4522[0m
+[0mPOST /users/create [36m302[0m 2241.896 ms - 70[0m
+[0mGET /users/signin [32m200[0m 594.233 ms - 4123[0m
+[0mPOST /users/create-session [36m302[0m 797.331 ms - 70[0m
+[0mGET /users/signin [32m200[0m 307.911 ms - 4105[0m
