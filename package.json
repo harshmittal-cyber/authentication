@@ -29,6 +29,7 @@
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.17.1",
     "fs": "0.0.1-security",
+    "generate-password": "^1.6.0",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
     "gulp-cssnano": "^2.1.3",
