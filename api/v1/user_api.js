@@ -1,10 +1,10 @@
-const User = require("../../../models/user");
+const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const env = require("../../../config/environment");
+const env = require("../../config/environment");
 const random = require("randomstring");
 const nodemailer = require("nodemailer");
-const token = require("../../../models/verify_token");
+const token = require("../../models/verify_token");
 
 module.exports.createSession = async function (req, res) {
   try {

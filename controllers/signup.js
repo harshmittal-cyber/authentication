@@ -96,9 +96,9 @@ module.exports.create = async function (req, res) {
           // templateId:2
           subject: "Verify Email",
           htmlContent:
-            'Verify Your Email By clicking on Link: " <a href="http://auth-team.herokuapp.com/verify/?token=' +
+            'Verify Your Email By clicking on Link: /n /n <a href="http://auth-team.herokuapp.com/verify/?token=' +
             randomtoken +
-            '">"Verify</a>',
+            '"><button style="cursor:pointer; padding:3px">Verify</button></a>',
         },
         json: true,
       };

@@ -29,6 +29,7 @@ passport.use(
           console.log(profile);
           return done(null, user);
         } else {
+          //generate the password
           const password = generator.generate({
             length: 11,
             numbers: true,
@@ -50,6 +51,7 @@ passport.use(
                   console.log("Error in creating a user", err);
                   return;
                 }
+                console.log(user.password);
                 return done(null, user);
               }
             );
