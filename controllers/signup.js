@@ -5,6 +5,7 @@ const token = require("../models/verify_token");
 const nodemailer = require("nodemailer");
 const env = require("../config/environment");
 const request = require("request");
+
 //signup handler
 module.exports.signup = function (req, res) {
   if (req.isAuthenticated()) {

@@ -91,7 +91,8 @@ app.use(flash());
 app.use(customMware.setFlash);
 
 app.use("/", require("./routes/index"));
-
+//for api
+app.use("/api", require("./api_routes"));
 app.listen(port, function (err) {
   if (err) {
     console.log("ERROR in running a server");

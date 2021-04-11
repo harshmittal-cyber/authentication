@@ -1004,3 +1004,13 @@
 [0mPOST /api/v1/users/login [32m200[0m 822.561 ms - 919[0m
 [0mPOST /api/v1/users/create-session [33m404[0m 295.374 ms - 167[0m
 [0mPOST /api/v1/users/login [32m200[0m 654.468 ms - 919[0m
+[0mPOST /api/v1/users/login [32m200[0m 506.117 ms - 919[0m
+[0mGET / [32m200[0m 31.999 ms - 2133[0m
+[0mGET / [36m304[0m 480.636 ms - -[0m
+[0mGET / [32m200[0m 2849.039 ms - 2175[0m
+[0mGET / [32m200[0m 2094.914 ms - 2533[0m
+[0mGET / [36m304[0m 345.866 ms - -[0m
+[0mGET / [36m304[0m 2669.088 ms - -[0m
+[0mGET / [32m200[0m 12.415 ms - 2533[0m
+[0mGET / [32m200[0m 3512.694 ms - 2542[0m
+[0mGET /users/signin [32m200[0m 312.611 ms - 4243[0m
