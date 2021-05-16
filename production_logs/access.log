@@ -1035,3 +1035,8 @@
 [0mGET /images/download.jpg [33m404[0m 583.760 ms - 158[0m
 [0mGET /users/profile/60a0de2c1f928596281743d4 [32m200[0m 597.591 ms - 4476[0m
 [0mGET /users/profile/:id [32m200[0m 582.768 ms - 4476[0m
+[0mGET / [32m200[0m 626.357 ms - 2723[0m
+[0mGET /users/profile/60a0de2c1f928596281743d4 [32m200[0m 585.977 ms - 4518[0m
+[0mGET /users/profile/60a0de2c1f928596281743d4 [36m304[0m 579.156 ms - -[0m
+[0mPOST /users/update/60a0de2c1f928596281743d4 [36m302[0m 924.210 ms - 164[0m
+[0mGET /users/profile/60a0de2c1f928596281743d4 [32m200[0m 1139.919 ms - 4608[0m

@@ -12,7 +12,7 @@
         <% if (locals.user) { %>
         <li>
           <!-- when we click on name it redirect to user profile page -->
-          <a href="/users/profile/:id" style="font-size: 16px"
+          <a href="/users/profile/<%=user._id%>" style="font-size: 16px"
             ><div class="user-btn"><%= user.name %></div></a
           >
         </li>
@@ -22,7 +22,7 @@
           </a>
         </li>
         <%if(user.avatar){%>
-          <a href="/users/profile/:id">
+          <a href="/users/profile/<%=user._id%>">
             <img
               src="<%= user.avatar %>"
               alt="<%= user.name %>"
@@ -39,7 +39,7 @@
             />
           </a>
         <%}else{%>
-          <a href="/users/profile/:id">
+          <a href="/users/profile/<%=user._id%>">
             <img
               src="/image/download.jpg"
               alt="<%= user.name %>"
