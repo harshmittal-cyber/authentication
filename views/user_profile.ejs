@@ -2,7 +2,15 @@
 <%-include('_header');%> <% if(locals.user){%>
 <div class="settings">
   <div class="image-container">
-    <img src="<%=user.avatar%>" alt="<%=user.name%>" id="img" />
+    <%if(user.avatar){%>
+      <img
+      src="<%=user.avatar%>"
+      alt="<%=user.name%>"
+      id="img"
+    />
+      <%}else{%>
+        <img src="/image/download.jpg"  id="img">
+    <%}%>
   </div>
 
   <!-- account or profile -->

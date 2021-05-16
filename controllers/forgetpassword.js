@@ -4,6 +4,7 @@ const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const env = require("../config/environment");
 const request = require("request");
+
 //for rendering user email confirmation for resetting the password
 module.exports.forgetpassword = function (req, res) {
   return res.render("forget_password", {

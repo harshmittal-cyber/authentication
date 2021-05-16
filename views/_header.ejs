@@ -21,22 +21,42 @@
             <button class="auth-btn">SignOut</button>
           </a>
         </li>
-        <a href="/users/profile/:id">
-          <img
-            src="<%= user.avatar %>"
-            alt="<%= user.name %>"
-            width="30"
-            height="30"
-            style="
-              border-radius: 50px;
-              border: none;
-              position: relative;
-              top: -1px;
-              object-fit: cover;
-              box-sizing: border-box;
-            "
-          />
-        </a>
+        <%if(user.avatar){%>
+          <a href="/users/profile/:id">
+            <img
+              src="<%= user.avatar %>"
+              alt="<%= user.name %>"
+              width="30"
+              height="30"
+              style="
+                border-radius: 50px;
+                border: none;
+                position: relative;
+                top: -1px;
+                object-fit: cover;
+                box-sizing: border-box;
+              "
+            />
+          </a>
+        <%}else{%>
+          <a href="/users/profile/:id">
+            <img
+              src="/image/download.jpg"
+              alt="<%= user.name %>"
+              width="30"
+              height="30"
+              style="
+                border-radius: 50px;
+                border: none;
+                position: relative;
+                top: -1px;
+                object-fit: cover;
+                box-sizing: border-box;
+              "
+            />
+          </a>
+            <%}%>
+       
         <% }else{ %>
         <li>
           <a href="/users/signup">
