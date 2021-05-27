@@ -1,28 +1,31 @@
 const express = require("express");
-const env = require("./config/environment");
 const app = express();
 require("./config/view-helper")(app);
 const port = process.env.PORT || 3000;
 const logger = require("morgan");
 const bodyParser = require("body-parser");
-
+const dotenv=require('dotenv').config();
+var exphbs = require('express-handlebars');
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const expressLayouts = require("express-ejs-layouts");
-const db = require("./config/mongoose");
 const connect = require("connect");
 const sassMiddleware = require("node-sass-middleware");
-//used for passportjs
 const passport = require("passport");
-const passportLocal = require("./config/passport-local-strategy");
-const passportGoogle = require("./config/passport-google-oauth-strategy");
 const passportOneSessionPerUser = require("passport-one-session-per-user");
-const passportJWT = require("./config/passport-jwt-strategy");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
+const messagebird=require('messagebird')(process.env.MESSAGEBIRD_API_KEY)
+
+//import files form file structure
 const customMware = require("./config/middleware");
-const { getLogger } = require("nodemailer/lib/shared");
+const passportGoogle = require("./config/passport-google-oauth-strategy");
+const passportLocal = require("./config/passport-local-strategy");
+const db = require("./config/mongoose");
+const env = require("./config/environment");
+const passportJWT = require("./config/passport-jwt-strategy");
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -97,5 +100,6 @@ app.listen(port, function (err) {
   if (err) {
     console.log("ERROR in running a server");
   }
+  console.log(process.env.MESSAGEBIRD_API_KEY)
   console.log(`Server is running on port ${port}`);
 });

@@ -28,51 +28,111 @@ module.exports.reset = async function (req, res) {
 };
 
 //for updating or resettting the password
-module.exports.resetpassword = function (req, res) {
-  token.findOne({ token: req.body.token }, function (err, tokenf) {
-    //if token is not expired then reset the passsword
+// module.exports.resetpassword = function (req, res) {
+//   token.findOne({ token: req.body.token }, function (err, tokenf) {
+//     //if token is not expired then reset the passsword
+//     if (tokenf && Date.now() - tokenf.created < duration) {
+//       User.findOne({ email: tokenf.email }, function (err, user) {
+//         //password check for strong password
+//         function validatePassword(password) {
+//           const re = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])([a-zA-Z0-9@$!%*?&]{8,})$/;
+//           return re.test(password);
+//         }
+
+//         //matching the form password with password check validation function
+//         if (validatePassword(req.body.reset_password)) {
+//           //if password match then delete the token and update the user password
+//           if (req.body.reset_password === req.body.reset_confirm_password) {
+//             token.findByIdAndDelete(tokenf._id, function (err, token) {});
+//             bcrypt.hash(req.body.reset_password, 10, function (err, hash) {
+//               User.findByIdAndUpdate(
+//                 user._id,
+//                 { password: hash, google: true },
+//                 function (err, user) {
+//                   console.log("Password changed");
+//                 }
+//               );
+//             });
+//             req.flash("success", "Password changed successfully");
+//             return res.redirect("/users/signin");
+//           } else {
+//             console.log("Password Mismatched");
+//             req.flash("error", "Password not matched");
+//             return res.redirect("back");
+//           }
+
+//           //if password is not valid then it send Invalid password
+//         } else {
+//           console.log("Invalid Password");
+//           req.flash("error", "Invalid Password");
+//           return res.redirect("back");
+//         }
+//       });
+//       //if token got expired then send the message link was expired
+//     } else {
+//       console.log("Link was expired");
+//       req.flash("error", "Link was expired");
+//       return res.redirect("/users/signin");
+//     }
+//   });
+// };
+
+
+function validatePassword(password) {
+  const re = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])([a-zA-Z0-9@$!%*?&]{8,})$/;
+  return re.test(password);
+}
+
+//for updating or resettting the password
+module.exports.resetpassword = async function (req, res) {
+  try{
+    let tokenf=await token.findOne({ token: req.body.token })
+
+    //if token is present then continue the process
     if (tokenf && Date.now() - tokenf.created < duration) {
-      User.findOne({ email: tokenf.email }, function (err, user) {
-        //password check for strong password
-        function validatePassword(password) {
-          const re = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])([a-zA-Z0-9@$!%*?&]{8,})$/;
-          return re.test(password);
-        }
+      let user=await  User.findOne({ email: tokenf.email })
 
-        //matching the form password with password check validation function
-        if (validatePassword(req.body.reset_password)) {
-          //if password match then delete the token and update the user password
-          if (req.body.reset_password === req.body.reset_confirm_password) {
-            token.findByIdAndDelete(tokenf._id, function (err, token) {});
-            bcrypt.hash(req.body.reset_password, 10, function (err, hash) {
-              User.findByIdAndUpdate(
-                user._id,
-                { password: hash, google: true },
-                function (err, user) {
-                  console.log("Password changed");
-                }
-              );
-            });
-            req.flash("success", "Password changed successfully");
-            return res.redirect("/users/signin");
-          } else {
-            console.log("Password Mismatched");
-            req.flash("error", "Password not matched");
-            return res.redirect("back");
-          }
+      if (validatePassword(req.body.reset_password)) {
+        //if password match then delete the token and update the user password
+        if (req.body.reset_password === req.body.reset_confirm_password) {
+          let token=await  token.findByIdAndDelete(tokenf._id)
 
-          //if password is not valid then it send Invalid password
+          //hash the password
+          let hash=await bcrypt.hash(req.body.reset_password, 10)
+
+          //update the user password
+          await  User.findByIdAndUpdate(
+            user._id,
+            { password: hash, google: true },
+            function (err, user) {
+              console.log("Password changed");
+            }
+          );
+
+          req.flash("success", "Password changed successfully");
+          return res.redirect("/users/signin");
+
         } else {
-          console.log("Invalid Password");
-          req.flash("error", "Invalid Password");
+          console.log("Password Mismatched");
+          req.flash("error", "Password not matched");
           return res.redirect("back");
         }
-      });
-      //if token got expired then send the message link was expired
+
+        //if password is not valid then it send Invalid password
+      } else {
+        console.log("Invalid Password");
+        req.flash("error", "Invalid Password");
+        return res.redirect("back");
+      }
     } else {
       console.log("Link was expired");
       req.flash("error", "Link was expired");
       return res.redirect("/users/signin");
     }
-  });
+  }catch(err){
+    console.log(err)
+    return res.status(500).json({
+      message:'Internal Server Error'
+    })
+  }
 };
