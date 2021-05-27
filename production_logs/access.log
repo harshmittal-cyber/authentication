@@ -1090,3 +1090,10 @@
 [0mGET /users/destroysession [36m302[0m 685.312 ms - 46[0m
 [0mGET / [32m200[0m 324.497 ms - 2457[0m
 [0mGET /users/signin [32m200[0m 344.395 ms - 3883[0m
+[0mGET / [32m200[0m 564.330 ms - 2182[0m
+[0mGET /users/signin [36m304[0m 349.105 ms - -[0m
+[0mPOST /users/create-session [36m302[0m 818.113 ms - 46[0m
+[0mGET / [36m304[0m 340.180 ms - -[0m
+[0mGET /users/signin [36m302[0m 693.817 ms - 46[0m
+[0mGET / [32m200[0m 665.456 ms - 3222[0m
+[0mGET / [32m200[0m 651.796 ms - 2723[0m
