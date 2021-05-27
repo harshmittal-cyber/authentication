@@ -32,7 +32,8 @@ module.exports.createSession = async function (req, res) {
           });
         } else {
           return res.status(200).json({
-            message: user,
+            message:'Signed in successfully',
+            user: user,
             data: jwt.sign(user.toJSON(), env.jwt_secret, {
               expiresIn: "600000",
             }),
@@ -63,6 +64,9 @@ function validatePassword(password) {
   return re.test(password);
 }
 
+
+
+//for creating a user
 module.exports.create = function (req, res) {
   const email = req.body.email;
 
