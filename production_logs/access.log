@@ -1045,3 +1045,8 @@
 [0mGET /forgetpassword [32m200[0m 258.083 ms - 2494[0m
 [0mPOST /forget [36m302[0m 584.616 ms - 116[0m
 [0mGET /forgetpassword [32m200[0m 248.575 ms - 2778[0m
+[0mGET / [36m304[0m 19347.243 ms - -[0m
+[0mGET /users/signin [36m304[0m 443.642 ms - -[0m
+[0mPOST /users/create-session [36m302[0m 4429.835 ms - 46[0m
+[0mGET / [32m200[0m 1575.864 ms - 3017[0m
+[0mGET /users/profile/60a0de2c1f928596281743d4 [32m200[0m 948.933 ms - 4608[0m
