@@ -100,6 +100,5 @@ app.listen(port, function (err) {
   if (err) {
     console.log("ERROR in running a server");
   }
-  console.log(process.env.MESSAGEBIRD_API_KEY)
   console.log(`Server is running on port ${port}`);
 });
