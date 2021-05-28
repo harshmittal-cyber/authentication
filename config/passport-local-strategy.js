@@ -3,6 +3,7 @@ const LocalStrategy=require('passport-local').Strategy;
 const User = require('../models/user');
 const bcrypt=require('bcrypt');
 const passportOneSessionPerUser=require('passport-one-session-per-user');
+
 passport.use(new LocalStrategy({
         usernameField:'email',
         passwordField:'password',
@@ -18,14 +19,11 @@ passport.use(new LocalStrategy({
                 req.flash('error','Invalid Username or Password')
                 return done(null,false)
             }
-            
-
             bcrypt.compare(password,user.password,function(err,result){
                 if(!result){
                     req.flash('error','Invalid Username or Password')
                     return done(null,false);
                 }
-
                 if(user.verified===false){
                    //if email is not verified
                    req.flash('error','Please Verify Your email')
@@ -38,6 +36,7 @@ passport.use(new LocalStrategy({
         })
     }    
 ))
+
 //it remove the pre session if we logged in in another tab
 passport.use(new passportOneSessionPerUser())
 
