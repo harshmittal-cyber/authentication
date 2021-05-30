@@ -1112,3 +1112,12 @@
 [0mPOST /users/create-session [36m302[0m 727.500 ms - 46[0m
 [0mGET / [32m200[0m 535.158 ms - 3017[0m
 [0mGET /uploads/users/avatars/avatar-1622117783490 [33m404[0m 520.164 ms - 181[0m
+[0mGET / [36m304[0m 3717.778 ms - -[0m
+[0mGET /users/signin [36m304[0m 304.173 ms - -[0m
+[0mPOST /users/create-session [36m302[0m 830.192 ms - 46[0m
+[0mGET / [32m200[0m 628.178 ms - 3017[0m
+[0mGET /uploads/users/avatars/avatar-1622117783490 [33m404[0m 619.720 ms - 181[0m
+[0mGET /users/profile/60af8c58821cb0002246ca1c [32m200[0m 612.541 ms - 4608[0m
+[0mGET /uploads/users/avatars/avatar-1622117783490 [33m404[0m 604.512 ms - 181[0m
+[0mGET / [32m200[0m 601.050 ms - 2743[0m
+[0mGET /uploads/users/avatars/avatar-1622117783490 [33m404[0m 609.012 ms - 181[0m
