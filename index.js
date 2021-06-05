@@ -25,7 +25,7 @@ const passportLocal = require("./config/passport-local-strategy");
 const db = require("./config/mongoose");
 const env = require("./config/environment");
 const passportJWT = require("./config/passport-jwt-strategy");
-
+const User=require('./models/user')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -96,6 +96,9 @@ app.use(customMware.setFlash);
 app.use("/", require("./routes/index"));
 //for api
 app.use("/api", require("./api_routes"));
+
+
+
 app.listen(port, function (err) {
   if (err) {
     console.log("ERROR in running a server");
