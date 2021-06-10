@@ -71,6 +71,6 @@ module.exports.forget = function (req, res) {
 };
 
 // htmlContent:
-//   'Reset your password By clicking on Link: " <a href="http://auth-team.herokuapp.com/reset/?token=' +
-//   randomtoken +
-//   '">"Reset your password</a>. This lInk is valid for only 10 minutes',
+// 'Reset your password By clicking on Link: " <a href="http://auth-team.herokuapp.com/reset/?token=' +
+// randomtoken +
+// '">"Reset your password</a>. This lInk is valid for only 10 minutes',

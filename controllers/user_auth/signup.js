@@ -118,6 +118,6 @@ module.exports.create = async function (req, res) {
 };
 
 // htmlContent:
-//   'Verify Your Email By clicking on Link: <a href="http://auth-team.herokuapp.com/verify/?token=' +
-//   randomtoken +
-//   '"><button style="cursor:pointer; padding:3px">Verify</button></a>',
+// 'Verify Your Email By clicking on Link: <a href="http://auth-team.herokuapp.com/verify/?token=' +
+// randomtoken +
+// '"><button style="cursor:pointer; padding:3px">Verify</button></a>',
