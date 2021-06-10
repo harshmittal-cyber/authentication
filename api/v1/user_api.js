@@ -73,19 +73,25 @@ module.exports.create = function (req, res) {
   //checking if email is valid or not
   if (!validateEmail(email)) {
     req.flash("error", "Enter a valid email");
-    return res.redirect("back");
+    return res.status(401).json({
+      message:'Enter valid email'
+    })
   }
   //if password not matches with confirm password
   if (req.body.password != req.body.confirm_password) {
     req.flash("error", "Password Not matched");
-    return res.redirect("back");
+    return res.status(401).json({
+      message:'Password not matched'
+    });
   }
 
   const password = req.body.password;
   //checking if password satisfy the secure password condition or not
   if (!validatePassword(password)) {
     req.flash("error", "Enter a valid password");
-    return res.redirect("back");
+    return res.status(401).json({
+      message:'Enter strong password'
+    })
   }
 
   User.findOne({ email: req.body.email }, function (err, user) {
@@ -95,7 +101,9 @@ module.exports.create = function (req, res) {
     }
     if (user) {
       req.flash("error", "User already Exist");
-      return res.redirect("/users/signup");
+      return res.status(401).json({
+        message:'User already exist'
+      })
     }
     if (!user) {
       bcrypt.hash(req.body.password, 10, function (err, hash) {

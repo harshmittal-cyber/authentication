@@ -28,7 +28,7 @@ const passportJWT = require("./config/passport-jwt-strategy");
 const User=require('./models/user')
 
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 //for cookies
 app.use(cookieParser());

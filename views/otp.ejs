@@ -1,0 +1,9 @@
+<form action="/users/otp-verify" method="POST">
+    <input type="hidden" value="<%=user.email%>" name="email" >
+    <input type="text" name="otp">
+    <input type="submit">
+</form>
+<form method="POST" action="/resend">
+    <input type="hidden" value="<%=user.email%>" name="email" >
+    <button type="submit">resend otp</button>
+</form>

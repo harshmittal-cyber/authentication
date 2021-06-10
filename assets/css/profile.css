@@ -15,7 +15,8 @@
     .settings .image-container img {
       height: 100px;
       width: 94px;
-      border-radius: 50%; }
+      border-radius: 50%;
+      object-fit: cover; }
   .settings .field {
     width: 100%;
     margin-bottom: 10px; }
