@@ -14,10 +14,13 @@ module.exports.reset = async function (req, res) {
         token: tokenf.token,
         email: tokenf.email,
       });
-    } else {
+    } else if (tokenf && Date.now() - tokenf.created > duration) {
       //if token is expired the delete the token from database
       await token.findByIdAndDelete(tokenf._id);
       req.flash("error", "Link was expired or invalid");
+      return res.redirect("/");
+    } else {
+      req.flash("error", "Invalid Link");
       return res.redirect("/");
     }
   } catch (err) {
