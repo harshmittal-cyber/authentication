@@ -9,7 +9,7 @@ module.exports.reset = async function (req, res) {
     let tokenf = await token.findOne({ token: req.query.token });
 
     if (tokenf && Date.now() - tokenf.created < duration) {
-      res.render("reset_form", {
+      return res.render("reset_form", {
         title: "Reset Password",
         token: tokenf.token,
         email: tokenf.email,
