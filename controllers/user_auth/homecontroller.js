@@ -8,12 +8,10 @@ module.exports.home = function (req, res) {
 //logout handler
 module.exports.destroysession = async function (req, res) {
   try {
-    req.logout();
+    await req.logout();
     req.flash("success", "Logged Out Successfully");
     return res.redirect("/");
   } catch (err) {
-    if (err) {
-      console.log("Error in finding your request", err);
-    }
+    console.log("Error in finding your request", err);
   }
 };

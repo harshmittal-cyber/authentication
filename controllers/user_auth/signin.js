@@ -33,7 +33,7 @@ module.exports.createSession = async function (req, res) {
         to: [{ email: email }],
         replyTo: { email: "mittalharsh4321@gmail.com" },
         subject: "Login detected",
-        htmlContent: `You've successfully Logged in to your <b>Authentication</b> account just now.<br> <br> <b>OS</b>:${req.useragent.os} <br> <b>Device</b>:${req.useragent.platform} <br> <b>Browser</b>:${req.useragent.browser} <br><b>IpAddress</b>:${ip1}. <br><br>We send this email as a security measure each time you login to your account.`,
+        htmlContent: `You've successfully Logged in to your <b>Authentication</b> account just now.<br> <br> <b>Device</b>:${req.useragent.platform} <br> <b>Browser</b>:${req.useragent.browser} <br><b>IpAddress</b>:${ip1}. <br><br>We send this email as a security measure each time you login to your account.`,
       },
       json: true,
     };
