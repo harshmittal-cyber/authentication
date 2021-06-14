@@ -3,13 +3,9 @@
 <div class="settings">
   <div class="image-container">
     <%if(user.avatar){%>
-      <img
-      src="<%=user.avatar%>"
-      alt="<%=user.name%>"
-      id="img"
-    />
-      <%}else{%>
-        <img src="/image/download.jpg"  id="img">
+    <img src="<%=user.avatar%>" alt="<%=user.name%>" id="img" />
+    <%}else{%>
+    <img src="/image/download.jpg" id="img" />
     <%}%>
   </div>
 
@@ -56,13 +52,6 @@
         <button class="save-btn">Save Changes</button>
       </div>
     </form>
-
-    <!-- Delete account button -->
-    <!-- <div class="btn-grp">
-      <a href="/users/destroy/<%=user.id%>" style="width: 100%">
-        <button class="delete-btn">Delete Account</button>
-      </a>
-    </div> -->
 
     <!-- button for hiding edit form -->
     <div class="go-back" id="go" onclick="go()">Go Back</div>

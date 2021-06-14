@@ -4,8 +4,8 @@ require("./config/view-helper")(app);
 const port = process.env.PORT || 3000;
 const logger = require("morgan");
 const bodyParser = require("body-parser");
-const dotenv=require('dotenv').config();
-var exphbs = require('express-handlebars');
+const dotenv = require("dotenv").config();
+var exphbs = require("express-handlebars");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const expressLayouts = require("express-ejs-layouts");
@@ -16,8 +16,9 @@ const passportOneSessionPerUser = require("passport-one-session-per-user");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
-const messagebird=require('messagebird')(process.env.MESSAGEBIRD_API_KEY)
-
+const useragent = require("express-useragent");
+const messagebird = require("messagebird")(process.env.MESSAGEBIRD_API_KEY);
+const ip = require("ip");
 //import files form file structure
 const customMware = require("./config/middleware");
 const passportGoogle = require("./config/passport-google-oauth-strategy");
@@ -25,10 +26,9 @@ const passportLocal = require("./config/passport-local-strategy");
 const db = require("./config/mongoose");
 const env = require("./config/environment");
 const passportJWT = require("./config/passport-jwt-strategy");
-const User=require('./models/user')
-
+const User = require("./models/user");
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //for cookies
 app.use(cookieParser());
@@ -82,7 +82,7 @@ app.use(
     ),
   })
 );
-
+app.use(useragent.express());
 //storing passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
@@ -94,10 +94,9 @@ app.use(flash());
 app.use(customMware.setFlash);
 
 app.use("/", require("./routes/index"));
+
 //for api
 app.use("/api", require("./api_routes"));
-
-
 
 app.listen(port, function (err) {
   if (err) {

@@ -26,6 +26,7 @@ router.get(
   passport.checkAuthentication,
   user_controller.delete
 );
+
 //SignIn router
 router.get("/signin", signin_controller.signin);
 router.post(
