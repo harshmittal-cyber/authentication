@@ -2236,3 +2236,8 @@
 [0mGET /forgetpassword [32m200[0m 241.892 ms - 2492[0m
 [0mPOST /forget [0m-[0m - ms - -[0m
 [0mGET /forgetpassword [32m200[0m 305.793 ms - 2776[0m
+[0mGET / [36m304[0m 1736.244 ms - -[0m
+[0mGET /users/signin [36m304[0m 241.169 ms - -[0m
+[0mGET /forgetpassword [32m200[0m 257.710 ms - 2492[0m
+[0mPOST /forget [36m302[0m 574.677 ms - 116[0m
+[0mGET /forgetpassword [32m200[0m 244.862 ms - 2776[0m
