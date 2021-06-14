@@ -2196,3 +2196,9 @@
 [0mGET /users/signin [32m200[0m 330.873 ms - 3883[0m
 [0mPOST /users/create-session [36m302[0m 632.215 ms - 46[0m
 [0mGET / [32m200[0m 511.886 ms - 2971[0m
+[0mGET / [32m200[0m 1796.701 ms - 2700[0m
+[0mGET /users/destroysession [36m302[0m 490.328 ms - 46[0m
+[0mGET / [32m200[0m 254.153 ms - 2474[0m
+[0mGET /users/signin [36m304[0m 263.953 ms - -[0m
+[0mPOST /users/create-session [36m302[0m 611.343 ms - 46[0m
+[0mGET / [32m200[0m 491.463 ms - 2971[0m

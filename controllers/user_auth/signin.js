@@ -1,7 +1,7 @@
 //signin handler
 const request = require("request");
-const useragent = require("express-useragent");
 const ip = require("ip");
+
 module.exports.signin = function (req, res) {
   if (req.isAuthenticated()) {
     return res.redirect("/");
@@ -13,7 +13,7 @@ module.exports.signin = function (req, res) {
 
 module.exports.createSession = async function (req, res) {
   try {
-    const ip1 = await ip.address();
+    let ip1 = await ip.address();
     let email = await req.body.email;
     let sendSMTPEmail = {
       method: "POST",
