@@ -2,7 +2,10 @@
   <nav>
     <div class="main-logo">
       <a href="/">
-        <img src="https://img.icons8.com/dusk/30/000000/checked--v1.png" />
+        <img
+          src="https://img.icons8.com/dusk/30/000000/checked--v1.png"
+          alt="logo"
+        />
         <p>authentication</p>
       </a>
     </div>
@@ -22,43 +25,40 @@
           </a>
         </li>
         <%if(user.avatar){%>
-          <a href="/users/profile/<%=user._id%>">
-            <img
-              src="<%= user.avatar %>"
-              alt="<%= user.name %>"
-              width="30"
-              height="30"
-              style="
-                border-radius: 50px;
-                border: none;
-                position: relative;
-                top: -1px;
-                object-fit: cover;
-                box-sizing: border-box;
-          
-              "
-            />
-          </a>
+        <a href="/users/profile/<%=user._id%>">
+          <img
+            src="<%= user.avatar %>"
+            alt="<%= user.name %>"
+            width="30"
+            height="30"
+            style="
+              border-radius: 50px;
+              border: none;
+              position: relative;
+              top: -1px;
+              object-fit: cover;
+              box-sizing: border-box;
+            "
+          />
+        </a>
         <%}else{%>
-          <a href="/users/profile/<%=user._id%>">
-            <img
-              src="/image/download.jpg"
-              alt="<%= user.name %>"
-              width="30"
-              height="30"
-              style="
-                border-radius: 49px;
-                border: none;
-                position: relative;
-                top: -1px;
-                object-fit: cover;
-                box-sizing: border-box;
-              "
-            />
-          </a>
-            <%}%>
-       
-        <% }else{ %>
+        <a href="/users/profile/<%=user._id%>">
+          <img
+            src="/image/download.jpg"
+            alt="<%= user.name %>"
+            width="30"
+            height="30"
+            style="
+              border-radius: 49px;
+              border: none;
+              position: relative;
+              top: -1px;
+              object-fit: cover;
+              box-sizing: border-box;
+            "
+          />
+        </a>
+        <%}%> <% }else{ %>
         <li>
           <a href="/users/signup">
             <button class="auth-btn">Sign Up</button>
