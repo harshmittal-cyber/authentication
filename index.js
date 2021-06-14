@@ -94,7 +94,9 @@ app.use(flash());
 app.use(customMware.setFlash);
 
 app.use("/", require("./routes/index"));
-
+// app.get("/", function (req, res) {
+//   res.send(req.useragent);
+// });
 //for api
 app.use("/api", require("./api_routes"));
 
